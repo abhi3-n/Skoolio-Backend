@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StudentSchoolDetails {
-    private String school;
+    private String school; //TODO: Need to use school id instead
     private String _class;
     private String section;
 

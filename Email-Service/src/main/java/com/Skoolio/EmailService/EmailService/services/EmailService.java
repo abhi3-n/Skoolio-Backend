@@ -17,7 +17,8 @@ public class EmailService {
     public boolean sendEmail(String subject,
                           String message,
                           String to){
-        String from = "innocentheartplayschool@gmail.com";
+//        String from = "innocentheartplayschool@gmail.com";
+        String from = "skoolioofficial@gmail.com";
         String host="smtp.gmail.com";
         //get the system properties
         Properties properties = System.getProperties();
@@ -33,7 +34,9 @@ public class EmailService {
         Session session= Session.getInstance(properties, new Authenticator() {
             @Override
             protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-                return new javax.mail.PasswordAuthentication(from,"saqwqariasuswxak");
+                return new javax.mail.PasswordAuthentication(from,"rsoklnteiejxeuam");
+//                return new javax.mail.PasswordAuthentication(from,"saqwqariasuswxak");
+
             }
 
 

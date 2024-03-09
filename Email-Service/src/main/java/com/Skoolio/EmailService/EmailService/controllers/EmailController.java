@@ -24,14 +24,6 @@ public class EmailController {
     @PostMapping()
     public ResponseEntity<?> sendRegistrationOTPMail(@RequestBody EmailOtpRequest emailOtpRequest){
         int otp = RandomOTPGenerator.generateOTP();
-        //remove this later.
-        if(!emailOtpRequest.getTemp().isEmpty()){
-            System.out.println("Str - "+emailOtpRequest.getTemp());
-        }
-        else{
-            System.out.println("Str is empty.");
-        }
-
         String message = constants.getRegistrationOTPBody1() + String.valueOf(otp) + constants.getRegistrationOTPBody2();
         boolean status =  this.emailService.sendEmail(constants.getRegistrationOTPSubject(),
                 message,

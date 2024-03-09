@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 @Setter
 @Getter
 @Component
-public class TempClass {
-    private String to;
-    private String subject;
-    private String body;
+public class StudentRegistrationMail {
+    private String studentMail;
+    private String school; //TODO: Later will be school ID, mail service will fetch school mail details itself.
+    private String applicationID;
 }

@@ -11,6 +11,4 @@ import lombok.Setter;
 @AllArgsConstructor
 public class EmailOtpRequest {
     private String email;
-    //remove temp later
-    private String temp = "";
 }
