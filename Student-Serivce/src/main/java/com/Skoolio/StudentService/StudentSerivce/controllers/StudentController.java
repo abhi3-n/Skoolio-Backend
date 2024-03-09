@@ -1,7 +1,7 @@
 package com.Skoolio.StudentService.StudentSerivce.controllers;
 
 
-import com.Skoolio.StudentService.StudentSerivce.entities.RegisterResponse;
+import com.Skoolio.StudentService.StudentSerivce.model.RegisterResponse;
 import com.Skoolio.StudentService.StudentSerivce.entities.Student;
 import com.Skoolio.StudentService.StudentSerivce.model.StudentRegistrationMail;
 import com.Skoolio.StudentService.StudentSerivce.services.KafkaService;

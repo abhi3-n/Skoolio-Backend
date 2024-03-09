@@ -1,20 +1,19 @@
-package com.Skoolio.StudentService.StudentSerivce.entities;
+package com.Skoolio.TeacherService.TeacherService.entities;
 
-import com.Skoolio.StudentService.StudentSerivce.model.AddressDetails;
-import com.Skoolio.StudentService.StudentSerivce.model.ContactDetails;
-import com.Skoolio.StudentService.StudentSerivce.model.GuardianDetails;
-import com.Skoolio.StudentService.StudentSerivce.model.StudentSchoolDetails;
+import com.Skoolio.TeacherService.TeacherService.model.AddressDetails;
+import com.Skoolio.TeacherService.TeacherService.model.ContactDetails;
+import com.Skoolio.TeacherService.TeacherService.model.PreviousEmploymentDetails;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
 
-
-@AllArgsConstructor
-@NoArgsConstructor
+@Entity
 @Getter
 @Setter
-//@Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class Student {
+public class Teacher {
     @Id
     private String email;
     private String firstName;
@@ -25,17 +24,11 @@ public class Student {
     private String nationality;
     private String password;
     private AddressDetails addressDetails;
-    private StudentSchoolDetails studentSchoolDetails;
-    private GuardianDetails father;
-    private GuardianDetails mother;
-    private ContactDetails contactDetails;
-    private Long registrationDate;
-    private String status = "Approval Pending";
-    private String mot;
+    private PreviousEmploymentDetails previousEmploymentDetails;
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "Teacher{" +
                 "email='" + email + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", middleName='" + middleName + '\'' +
@@ -45,13 +38,14 @@ public class Student {
                 ", nationality='" + nationality + '\'' +
                 ", password='" + password + '\'' +
                 ", addressDetails=" + addressDetails +
-                ", studentSchoolDetails=" + studentSchoolDetails +
-                ", father=" + father +
-                ", mother=" + mother +
+                ", previousEmploymentDetails=" + previousEmploymentDetails +
                 ", contactDetails=" + contactDetails +
                 ", registrationDate=" + registrationDate +
                 ", status='" + status + '\'' +
-                ", mot='" + mot + '\'' +
                 '}';
     }
+
+    private ContactDetails contactDetails;
+    private Long registrationDate;
+    private String status = "Approval Pending";
 }

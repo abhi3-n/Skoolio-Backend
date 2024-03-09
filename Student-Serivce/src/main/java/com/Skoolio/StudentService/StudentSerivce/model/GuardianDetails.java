@@ -1,4 +1,4 @@
-package com.Skoolio.StudentService.StudentSerivce.entities;
+package com.Skoolio.StudentService.StudentSerivce.model;
 
 import lombok.*;
 
