@@ -1,0 +1,43 @@
+server:
+  port: 8081
+
+
+
+spring:
+  application:
+    name: EMAIL-SERVICE
+
+
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+
+kafka:
+  consumer:
+    bootstrap-servers:
+      - localhost:9092
+    group-id: group-1
+    auto-offset-reset: earliest
+#    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#    key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+#    value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+#    value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+
+#    properties:
+#      spring:
+#        json:
+#          trusted:
+#            packages: 'com.Skoolio.EmailService.EmailService.models, com.Skoolio.StudentService.StudentSerivce.models'
+
+
+
+
+

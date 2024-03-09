@@ -1,0 +1,21 @@
+server:
+  port: 8083
+
+
+spring:
+  application:
+    name: Demo
+
+kafka:
+  consumer:
+    bootstrap-servers:
+      - localhost:9092
+    group-id: group-1
+    auto-offset-reset: earliest
+    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    value-deserializer: org.apache.kafka.common.serialization.JsonDeserializer
+    properties:
+      spring:
+        json:
+          trusted:
+            packages: 'com.example.sample.demo'
