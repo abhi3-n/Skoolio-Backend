@@ -21,9 +21,7 @@ public class StudentController {
     private KafkaService kafkaService;
 
     @PostMapping
-    public ResponseEntity<?> registerStudent(
-            @RequestBody Student student
-    ) throws JsonProcessingException {
+    public ResponseEntity<?> registerStudent(@RequestBody Student student) throws JsonProcessingException {
         System.out.println("Request Recieved");
         student.setRegistrationDate(LocalDateTime.now().toEpochSecond(java.time.ZoneOffset.UTC));
         System.out.println(student.toString());

@@ -4,6 +4,7 @@ import com.Skoolio.StudentService.StudentSerivce.model.AddressDetails;
 import com.Skoolio.StudentService.StudentSerivce.model.ContactDetails;
 import com.Skoolio.StudentService.StudentSerivce.model.GuardianDetails;
 import com.Skoolio.StudentService.StudentSerivce.model.StudentSchoolDetails;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
 
@@ -16,13 +17,14 @@ import lombok.*;
 @Builder
 public class Student {
     @Id
-    private String email;
+    private String studentId;
     private String firstName;
     private String middleName;
     private String lastName;
     private Long dob;
     private String gender;
     private String nationality;
+    private String email;
     private String password;
     private AddressDetails addressDetails;
     private StudentSchoolDetails studentSchoolDetails;
