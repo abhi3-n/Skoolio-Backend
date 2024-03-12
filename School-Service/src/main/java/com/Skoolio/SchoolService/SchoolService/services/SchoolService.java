@@ -1,18 +1,20 @@
 package com.Skoolio.SchoolService.SchoolService.services;
 
-import com.Skoolio.SchoolService.SchoolService.entities.School;
+import com.Skoolio.SchoolService.SchoolService.repositories.SchoolRepository;
 
 import java.util.List;
 
 public interface SchoolService {
 
     //save a school
-    School saveSchool(School school);
+    com.Skoolio.SchoolService.SchoolService.entities.School saveSchool(com.Skoolio.SchoolService.SchoolService.entities.School school);
 
     //get all school info
-    List<School> getAllSchool();
+    List<com.Skoolio.SchoolService.SchoolService.entities.School> getAllSchools();
 
     //get a school
-    School getSchool(Integer schoolId);
+    com.Skoolio.SchoolService.SchoolService.entities.School getSchool(Integer schoolId);
 
+
+    List<SchoolRepository.SchoolInfo> getSchoolsByCity(String city);
 }

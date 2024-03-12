@@ -14,12 +14,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@SequenceGenerator(name = "school_id_seq", sequenceName = "school_id_seq", allocationSize = 1)
+@Table(name = "school")
 public class School {
     @Id
-//    @GeneratedValue(strategy = GenerationType.TABLE, generator = "school_id_generator")
-//    @TableGenerator(name = "school_id_generator", table = "id_generator", pkColumnName = "id_name", valueColumnName = "id_value", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "school_id_seq")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "school_id_generator")
+    @TableGenerator(name = "school_id_generator", table = "id_generator", pkColumnName = "id_name", valueColumnName = "id_value", allocationSize = 1)
     private Integer schoolId;
     @Column(nullable = false)
     private String schoolName;
@@ -31,4 +30,12 @@ public class School {
     private Long registrationDate;
     @Column(nullable = false)
     private String schoolActiveStatus;
+
+
+    public void toLowerCase(){
+        this.schoolName = this.schoolName.toLowerCase();
+        this.addressDetails.setAddressLine(this.addressDetails.getAddressLine().toLowerCase());
+        this.addressDetails.setCity(this.addressDetails.getCity().toLowerCase());
+        this.addressDetails.setState(this.addressDetails.getState().toLowerCase());
+    }
 }

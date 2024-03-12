@@ -21,13 +21,15 @@ public class SchoolController {
     public ResponseEntity<?> registerSchool(@RequestBody School school){
         System.out.println("Request Recieved");
         school.setRegistrationDate(LocalDateTime.now().toEpochSecond(java.time.ZoneOffset.UTC));
+        school.toLowerCase();
         School savedSchool = schoolService.saveSchool(school);
         return ResponseEntity.status(HttpStatus.OK).body(new RegisterResponse(savedSchool.getSchoolId().toString(),"registered"));
     }
 
     @GetMapping("/{schoolId}")
-    public ResponseEntity<?> getSchoolById(@PathVariable String school){
-        return ResponseEntity.status(HttpStatus.OK).body(new RegisterResponse("","registered"));
+    public ResponseEntity<School> getSchoolById(@PathVariable String schoolId){
+        School school = schoolService.getSchool(Integer.valueOf(schoolId));
+        return ResponseEntity.status(HttpStatus.OK).body(school);
     }
-
 }
+
