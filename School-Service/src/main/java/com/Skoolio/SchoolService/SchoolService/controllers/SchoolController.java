@@ -4,7 +4,6 @@ package com.Skoolio.SchoolService.SchoolService.controllers;
 import com.Skoolio.SchoolService.SchoolService.entities.School;
 import com.Skoolio.SchoolService.SchoolService.model.RegisterResponse;
 import com.Skoolio.SchoolService.SchoolService.services.SchoolService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
