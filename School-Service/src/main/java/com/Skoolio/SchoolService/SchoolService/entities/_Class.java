@@ -1,5 +1,6 @@
 package com.Skoolio.SchoolService.SchoolService.entities;
 
+import com.Skoolio.SchoolService.SchoolService.utils.UniqueIdGenerator;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,6 +32,8 @@ public class _Class {
     }
 
     public void genClassId(){
-        this.classId = this.schoolId.getSchoolId().toString() + this.grade.toLowerCase() + this.section.toLowerCase();
+        this.classId = UniqueIdGenerator.generateClassId(this.schoolId.getSchoolId(),
+                this.grade,
+                this.section);
     }
 }
