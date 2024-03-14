@@ -3,36 +3,43 @@ package com.Skoolio.TeacherService.TeacherService.controllers;
 
 import com.Skoolio.TeacherService.TeacherService.entities.Teacher;
 import com.Skoolio.TeacherService.TeacherService.model.RegisterResponse;
+import com.Skoolio.TeacherService.TeacherService.model.TeacherRegistrationMail;
 import com.Skoolio.TeacherService.TeacherService.services.KafkaService;
+import com.Skoolio.TeacherService.TeacherService.services.TeacherService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.time.LocalDateTime;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/teachers")
+@RequestMapping("/teacher")
 public class TeacherController {
+    @Autowired
+    private TeacherService teacherService;
     @Autowired
     private KafkaService kafkaService;
 
     @PostMapping
-    public ResponseEntity<?> registerTeacher(
-            @RequestBody Teacher teacher
-    ) throws JsonProcessingException {
-        System.out.println("Request Recieved");
-        teacher.setRegistrationDate(LocalDateTime.now().toEpochSecond(java.time.ZoneOffset.UTC));
-//        System.out.println(teacher.toString());
-//        //TODO:Generate Application ID
-//
-//
-//        sendTeacherRegistrationMail(teacher.getEmail(), "123", teacher.getStudentSchoolDetails().getSchool());
+    public ResponseEntity<?> registerTeacher(@RequestBody Teacher teacher) throws JsonProcessingException {
+        Teacher teacher1 = teacherService.createTeacher(teacher);
+        sendTeacherRegistrationMail(teacher.getEmail(), teacher.getRegistrationId(), teacher.getTeacherSchoolDetails().getSchoolId());
 
-        return ResponseEntity.status(HttpStatus.OK).body(new RegisterResponse("123","registered"));
+        return ResponseEntity.status(HttpStatus.OK).body(new RegisterResponse(teacher1.getRegistrationId(),"registered"));
+    }
+
+    @GetMapping("/{teacherId}")
+    public ResponseEntity<?> getTeacherById(@PathVariable String teacherId){
+        Teacher teacher = teacherService.getTeacherById(teacherId);
+        return ResponseEntity.status(HttpStatus.OK).body(teacher);
+    }
+
+
+    private void sendTeacherRegistrationMail(String email, String registrationId, Integer schoolId) throws JsonProcessingException {
+        TeacherRegistrationMail studentRegistrationMail = new TeacherRegistrationMail();
+        studentRegistrationMail.setUserMail(email);
+        studentRegistrationMail.setApplicationID(registrationId);
+        studentRegistrationMail.setSchoolId(schoolId);
+        kafkaService.sendStudentRegistrationMail(studentRegistrationMail);
     }
 }

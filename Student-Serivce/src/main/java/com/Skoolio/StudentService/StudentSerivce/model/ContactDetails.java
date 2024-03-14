@@ -17,8 +17,11 @@ public class ContactDetails {
     private String primaryContactName;
     @Column(nullable = false)
     private String primaryContactRelation;
+    @Column(nullable = false)
     private String alternativeContact;
+    @Column(nullable = false)
     private String alternativeContactName;
+    @Column(nullable = false)
     private String alternativeContactRelation;
 
     @Override

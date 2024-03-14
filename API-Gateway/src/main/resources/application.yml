@@ -19,7 +19,7 @@ spring:
         - id: TEACHER-SERVICE
           uri: lb://TEACHER-SERVICE
           predicates:
-            - Path=/teachers/**
+            - Path=/teachers/**,/teacher/**
         - id: SCHOOL-SERVICE
           uri: lb://SCHOOL-SERVICE
           predicates:

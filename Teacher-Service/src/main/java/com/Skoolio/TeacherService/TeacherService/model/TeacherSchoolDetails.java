@@ -1,5 +1,17 @@
 package com.Skoolio.TeacherService.TeacherService.model;
 
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import lombok.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Embeddable
 public class TeacherSchoolDetails {
-    private String school;
+    @Column(nullable = false)
+    private Integer schoolId;
 }

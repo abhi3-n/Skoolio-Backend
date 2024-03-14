@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 @Setter
 @Getter
 @Component
-public class StudentRegistrationMail {
-    private String studentMail;
-    private String school; //TODO: Later will be school ID, mail service will fetch school mail details itself.
+public class UserRegistrationMail {
+    private String userMail;
+    private Integer schoolId; 
     private String applicationID;
 }

@@ -1,6 +1,6 @@
 package com.Skoolio.EmailService.EmailService.config;
 
-import com.Skoolio.EmailService.EmailService.models.StudentRegistrationMail;
+import com.Skoolio.EmailService.EmailService.models.UserRegistrationMail;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,7 @@ import java.util.Map;
 @Configuration
 public class KafkaConsumerConfig {
     @Bean
-    public ConsumerFactory<String, StudentRegistrationMail> consumerFactory() {
+    public ConsumerFactory<String, UserRegistrationMail> consumerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         configProps.put(ConsumerConfig.GROUP_ID_CONFIG, "group-1");
@@ -27,7 +27,7 @@ public class KafkaConsumerConfig {
         configProps.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS, StringDeserializer.class);
         configProps.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JsonDeserializer.class);
         configProps.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
-        configProps.put(JsonDeserializer.VALUE_DEFAULT_TYPE, "com.Skoolio.EmailService.EmailService.models.StudentRegistrationMail");
+        configProps.put(JsonDeserializer.VALUE_DEFAULT_TYPE, "com.Skoolio.EmailService.EmailService.models.UserRegistrationMail");
 
 
 
@@ -35,8 +35,8 @@ public class KafkaConsumerConfig {
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, StudentRegistrationMail> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, StudentRegistrationMail> factory =
+    public ConcurrentKafkaListenerContainerFactory<String, UserRegistrationMail> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, UserRegistrationMail> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;

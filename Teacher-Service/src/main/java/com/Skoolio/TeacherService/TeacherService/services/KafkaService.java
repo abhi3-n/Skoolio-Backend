@@ -12,7 +12,7 @@ public class KafkaService {
     @Autowired
     private KafkaTemplate<String,String> kafkaTemplate;
     public boolean sendStudentRegistrationMail(TeacherRegistrationMail teacherRegistrationMail) throws JsonProcessingException {
-        System.out.println("Email Id is -"+ teacherRegistrationMail.getTeacherMail());
+        System.out.println("Email Id is -"+ teacherRegistrationMail.getUserMail());
         ObjectMapper objectMapper = new ObjectMapper();
 
         // Convert the object to JSON

@@ -12,8 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/student")
 public class StudentController {
@@ -41,7 +39,7 @@ public class StudentController {
 
     private void sendStudentRegistrationMail(String email, String registrationId, String schoolId) throws JsonProcessingException {
         StudentRegistrationMail studentRegistrationMail = new StudentRegistrationMail();
-        studentRegistrationMail.setStudentMail(email);
+        studentRegistrationMail.setUserMail(email);
         studentRegistrationMail.setApplicationID(registrationId);
         studentRegistrationMail.setSchoolId(schoolId);
         kafkaService.sendStudentRegistrationMail(studentRegistrationMail);

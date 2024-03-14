@@ -1,6 +1,7 @@
 package com.Skoolio.StudentService.StudentSerivce.model;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.*;
 
@@ -12,8 +13,11 @@ import lombok.*;
 @Setter
 @Embeddable
 public class AddressDetails {
+    @Column(nullable = false)
     private String addressLine;
+    @Column(nullable = false)
     private String state;
+    @Column(nullable = false)
     private String city;
     //TODO:pincode?
     @Override

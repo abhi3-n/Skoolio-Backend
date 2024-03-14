@@ -78,7 +78,7 @@ public class Student {
     }
 
     public void genStudentId(){
-        this.setStudentId(UniqueIdGenerator.generateStudentId(this.registrationId + this.firstName + this.lastName));
+        this.setStudentId(UniqueIdGenerator.generateUniqueId(this.registrationId + this.firstName + this.lastName));
     }
 
     public void toLowerCase(){
@@ -106,7 +106,7 @@ public class Student {
     }
 
     public void genRegId(){
-        this.setRegistrationId(UniqueIdGenerator.generateStudentRegId(this.registrationDate.toString() + this.studentSchoolDetails.getSchoolId().toString() + this.studentSchoolDetails.getClassId() + this.email));
+        this.setRegistrationId(UniqueIdGenerator.generateUniqueId(this.registrationDate.toString() + this.studentSchoolDetails.getSchoolId().toString() + this.studentSchoolDetails.getClassId() + this.email));
     }
 
     public void readyStudent() {

@@ -1,7 +1,7 @@
 package com.Skoolio.EmailService.EmailService.config;
 
 
-import com.Skoolio.EmailService.EmailService.models.StudentRegistrationMail;
+import com.Skoolio.EmailService.EmailService.models.UserRegistrationMail;
 import com.Skoolio.EmailService.EmailService.services.EmailService;
 import com.Skoolio.EmailService.EmailService.utils.Constants;
 import org.apache.kafka.clients.admin.NewTopic;
@@ -29,18 +29,39 @@ public class KafkaConfig {
 
     //This function handles mail sending activities related to student registration.
     @KafkaListener(topics = "send-student-registration-mail",groupId = "group-1")
-    public void sendStudentRegistrationMail(StudentRegistrationMail studentRegistrationMail){
-        System.out.println("Email is - "+studentRegistrationMail.getStudentMail());
+    public void sendStudentRegistrationMail(UserRegistrationMail studentRegistrationMail){
+        System.out.println("Email is - "+studentRegistrationMail.getUserMail());
+
         //First send mail to user.
-        emailService.sendEmail(constants.getStudentRegistrationSubject(),
-                constants.getStudentRegistrationBody1() + studentRegistrationMail.getApplicationID()+ constants.getStudentRegistrationBody2(),
-                studentRegistrationMail.getStudentMail());
+        emailService.sendEmail(constants.getRegistrationSubject(),
+                constants.getRegistrationBody1() + studentRegistrationMail.getApplicationID()+ constants.getRegistrationBody2(),
+                studentRegistrationMail.getUserMail());
+
         //Then send mail to school
         //TODO:First fetch school name and school email from school service
         emailService.sendEmail(constants.getSchoolStudentRegistrationSubject(),
                 constants.getSchoolStudentRegistrationBody1() +
                         studentRegistrationMail.getApplicationID() +
                         constants.getSchoolStudentRegistrationBody2(),
+                "innocentheartplayschool@gmail.com");
+    }
+
+    //This function handles mail sending activities related to teacher registration.
+    @KafkaListener(topics = "send-teacher-registration-mail",groupId = "group-1")
+    public void sendTeacherRegistrationMail(UserRegistrationMail teacherRegistrationMail){
+        System.out.println("Email is - "+teacherRegistrationMail.getUserMail());
+
+        //First send mail to user.
+        emailService.sendEmail(constants.getRegistrationSubject(),
+                constants.getRegistrationBody1() + teacherRegistrationMail.getApplicationID()+ constants.getRegistrationBody2(),
+                teacherRegistrationMail.getUserMail());
+
+        //Then send mail to school
+        //TODO:First fetch school name and school email from school service
+        emailService.sendEmail(constants.getSchoolTeacherRegistrationSubject(),
+                constants.getSchoolTeacherRegistrationBody1() +
+                        teacherRegistrationMail.getApplicationID() +
+                        constants.getSchoolTeacherRegistrationBody2(),
                 "innocentheartplayschool@gmail.com");
     }
 }

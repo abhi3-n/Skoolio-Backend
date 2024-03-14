@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Getter
 @Component
 public class StudentRegistrationMail implements Serializable {
-    private String studentMail;
+    private String userMail;
     private String schoolId;
     private String applicationID;
     //Subject and body of the mail to be decided by mail service itself. This enables single point of change.

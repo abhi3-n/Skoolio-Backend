@@ -1,6 +1,8 @@
 package com.Skoolio.TeacherService.TeacherService.model;
 
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 import lombok.*;
 
 
@@ -9,15 +11,19 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
+@Embeddable
 public class AddressDetails {
-    private String residentialAddress;
+    @Column(nullable = false)
+    private String addressLine;
+    @Column(nullable = false)
     private String state;
+    @Column(nullable = false)
     private String city;
 
     @Override
     public String toString() {
         return "AddressDetails{" +
-                "residentialAddress='" + residentialAddress + '\'' +
+                "residentialAddress='" + addressLine + '\'' +
                 ", state='" + state + '\'' +
                 ", city='" + city + '\'' +
                 '}';

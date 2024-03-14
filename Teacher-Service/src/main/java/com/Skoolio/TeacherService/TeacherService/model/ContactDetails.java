@@ -1,6 +1,8 @@
 package com.Skoolio.TeacherService.TeacherService.model;
 
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 import lombok.*;
 
 @Getter
@@ -8,10 +10,15 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Embeddable
 public class ContactDetails {
+    @Column(nullable = false)
     private String primaryContact;
+    @Column(nullable = false)
     private String primaryContactName;
+    @Column(nullable = false)
     private String alternativeContact;
+    @Column(nullable = false)
     private String alternativeContactName;
 
     @Override

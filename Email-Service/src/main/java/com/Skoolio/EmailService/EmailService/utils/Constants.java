@@ -24,12 +24,12 @@ public class Constants {
             "\n" +
             mailEnding;
 
-    private String studentRegistrationSubject = "Registration Complete";
-    private String studentRegistrationBody1 = "Dear User,\n"+
+    private String registrationSubject = "Registration Complete";
+    private String registrationBody1 = "Dear User,\n"+
     "\n" +
     "Congratulations! We are thrilled to welcome you to Skoolio! Your registration was successful.\n\n" +
      "Application Id - ";
-    private String studentRegistrationBody2 = "\n\nPlease keep this Application ID handy, as it will " +
+    private String registrationBody2 = "\n\nPlease keep this Application ID handy, as it will " +
             "be useful for any future communications or inquiries related to your application.\n\n"+
             "If you have any questions or need assistance, feel free to reach out for support at skoolioofficial@gmail.com.\n"+
             mailEnding;
@@ -38,14 +38,48 @@ public class Constants {
     private String schoolStudentRegistrationSubject = "New Student Registration Notification \uD83D\uDCDA";
     private String schoolStudentRegistrationBody1 = "Dear School,\n"+
             "We hope this message finds you well. This is to inform you about a recent student registration on Skoolio." +
-            " The application is currently pending approval.\n"+
+            " The application is currently pending for approval.\n"+
             "Application ID - ";
     private String schoolStudentRegistrationBody2 = "\n\nAction Required:\n" +
-            "You can review the details of the student application on the application by using the provided Application ID.\n\n"+
+            "You can review the details of the student application on the Skoolio App by using the provided Application ID.\n\n"+
             "If you have any questions or concerns, please feel free to contact us at skoolioofficial@gmail.com.\n\n"+
             "Thank you for partnering with Skoolio. We look forward to continuing to work together to support students in their " +
             "educational journey.\n\n"+
             mailEnding;
 
 
+
+
+    private String schoolTeacherRegistrationSubject = "New Teacher Registration Notification \uD83D\uDC69\u200D\uD83C\uDFEB";
+    private String schoolTeacherRegistrationBody1 = "Dear School,\n"+
+            "We hope this message finds you well. This is to inform you about a recent teacher registration on Skoolio." +
+            " The application is currently pending for approval.\n"+
+            "Application ID - ";
+    private String schoolTeacherRegistrationBody2 = "\n\nAction Required:\n" +
+            "You can review the details of the teacher application on the Skoolio App by using the provided Application ID.\n\n"+
+            "If you have any questions or concerns, please feel free to contact us at skoolioofficial@gmail.com.\n\n"+
+            "Thank you for partnering with Skoolio. We look forward to continuing to work together to support students in their " +
+            "educational journey.\n\n"+
+            mailEnding;
+
+
+
+
+
+
+
+    private String registrationBody1(String user){
+        return "Dear School,\n"+
+                "We hope this message finds you well. This is to inform you about a recent "+user+" registration on Skoolio." +
+                " The application is currently pending for approval.\n"+
+                "Application ID - ";
+    }
+    private String registrationBody2(String user){
+        return "\n\nAction Required:\n" +
+                "You can review the details of the "+user+" application on the Skoolio App by using the provided Application ID.\n\n"+
+                "If you have any questions or concerns, please feel free to contact us at skoolioofficial@gmail.com.\n\n"+
+                "Thank you for partnering with Skoolio. We look forward to continuing to work together to support students in their " +
+                "educational journey.\n\n"+
+                mailEnding;
+    }
 }

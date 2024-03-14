@@ -5,13 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 public class UniqueIdGenerator {
-    public static String generateStudentId(String uniqueString) {
-        byte[] hash = computeSHA256Hash(uniqueString);
-        String base64urlHash = base64UrlEncode(hash);
-        return base64urlHash.substring(0, 10);
-    }
-
-    public static String generateStudentRegId(String uniqueString) {
+    public static String generateUniqueId(String uniqueString) {
         byte[] hash = computeSHA256Hash(uniqueString);
         String base64urlHash = base64UrlEncode(hash);
         return base64urlHash.substring(0, 10);

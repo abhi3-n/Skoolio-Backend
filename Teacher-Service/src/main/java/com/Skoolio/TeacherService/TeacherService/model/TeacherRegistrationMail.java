@@ -5,12 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TeacherRegistrationMail {
-    private String teacherMail;
-    private String school; //TODO: Later will be school ID, mail service will fetch school mail details itself.
+public class TeacherRegistrationMail implements Serializable {
+    private String userMail;
+    private Integer schoolId;
     private String applicationID;
 }
