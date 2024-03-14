@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Component
 public class StudentRegistrationMail implements Serializable {
     private String studentMail;
-    private String school; //TODO: Later will be school ID, mail service will fetch school mail details itself.
+    private String schoolId;
     private String applicationID;
     //Subject and body of the mail to be decided by mail service itself. This enables single point of change.
 }

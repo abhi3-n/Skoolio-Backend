@@ -3,6 +3,7 @@ package com.Skoolio.StudentService.StudentSerivce.implementation;
 import com.Skoolio.StudentService.StudentSerivce.entities.Student;
 import com.Skoolio.StudentService.StudentSerivce.repositories.StudentRepository;
 import com.Skoolio.StudentService.StudentSerivce.services.StudentService;
+import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,15 +20,15 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.save(student);
     }
 
-
-
     @Override
-    public Student getStudentById(Student student) {
-        return null;
+    public Student getStudentById(String studentId) {
+        return studentRepository.findById(studentId).orElseThrow(()->
+                new ResourceNotFoundException("Requested Student Id not found" + studentId));
     }
 
     @Override
     public List<Student> getStudentsByClassId(String classId) {
-        return null;
+        List<Student> listOfStudents= studentRepository.findByStudentSchoolDetailsClassId(classId);
+        return listOfStudents;
     }
 }

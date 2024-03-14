@@ -12,7 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping("/student")
@@ -32,21 +32,18 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.OK).body(new RegisterResponse(student1.getRegistrationId(),"registered"));
     }
 
-
-    //This get method function is only for testing purposes with postman
-    @GetMapping
-    public ResponseEntity<?> sendEmail(@RequestBody StudentRegistrationMail studentRegistrationMail) throws JsonProcessingException {
-        kafkaService.sendStudentRegistrationMail(studentRegistrationMail);
-
-        return ResponseEntity.status(HttpStatus.OK).body("Email Sent");
+    @GetMapping("/{studentId}")
+    public ResponseEntity<Student> getStudentById(@PathVariable String studentId) {
+        Student student = studentService.getStudentById(studentId);
+        return ResponseEntity.status(HttpStatus.OK).body(student);
     }
 
 
-    private void sendStudentRegistrationMail(String email, String number, String school) throws JsonProcessingException {
+    private void sendStudentRegistrationMail(String email, String registrationId, String schoolId) throws JsonProcessingException {
         StudentRegistrationMail studentRegistrationMail = new StudentRegistrationMail();
         studentRegistrationMail.setStudentMail(email);
-        studentRegistrationMail.setApplicationID(number); //TODO:application ID to be generated.
-        studentRegistrationMail.setSchool(school); //TODO:schoolid to be passed
+        studentRegistrationMail.setApplicationID(registrationId);
+        studentRegistrationMail.setSchoolId(schoolId);
         kafkaService.sendStudentRegistrationMail(studentRegistrationMail);
     }
 }
