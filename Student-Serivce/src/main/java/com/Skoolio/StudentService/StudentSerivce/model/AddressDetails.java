@@ -1,6 +1,7 @@
 package com.Skoolio.StudentService.StudentSerivce.model;
 
 
+import jakarta.persistence.Embeddable;
 import lombok.*;
 
 
@@ -9,15 +10,16 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
+@Embeddable
 public class AddressDetails {
-    private String residentialAddress;
+    private String addressLine;
     private String state;
     private String city;
-
+    //TODO:pincode?
     @Override
     public String toString() {
         return "AddressDetails{" +
-                "residentialAddress='" + residentialAddress + '\'' +
+                "residentialAddress='" + addressLine + '\'' +
                 ", state='" + state + '\'' +
                 ", city='" + city + '\'' +
                 '}';

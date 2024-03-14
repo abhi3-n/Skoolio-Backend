@@ -41,10 +41,10 @@ public class Constants {
             " The application is currently pending approval.\n"+
             "Application ID - ";
     private String schoolStudentRegistrationBody2 = "\n\nAction Required:\n" +
-            "You can review the details of the student application on the application by using the provided Application ID.\n"+
-            "If you have any questions or concerns, please feel free to contact us at skoolioofficial@gmail.com.\n"+
+            "You can review the details of the student application on the application by using the provided Application ID.\n\n"+
+            "If you have any questions or concerns, please feel free to contact us at skoolioofficial@gmail.com.\n\n"+
             "Thank you for partnering with Skoolio. We look forward to continuing to work together to support students in their " +
-            "educational journey.\n"+
+            "educational journey.\n\n"+
             mailEnding;
 
 

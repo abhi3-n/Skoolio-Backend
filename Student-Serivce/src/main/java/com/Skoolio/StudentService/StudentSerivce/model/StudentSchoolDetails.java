@@ -1,6 +1,8 @@
 package com.Skoolio.StudentService.StudentSerivce.model;
 
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,17 +12,18 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Embeddable
 public class StudentSchoolDetails {
-    private String school; //TODO: Need to use school id instead
-    private String _class;
-    private String section;
+    @Column(nullable = false)
+    private Integer schoolId; //TODO: Need to use school id instead
+    @Column(nullable = false)
+    private String classId;
 
     @Override
     public String toString() {
         return "StudentSchoolDetails{" +
-                "school='" + school + '\'' +
-                ", _class='" + _class + '\'' +
-                ", section='" + section + '\'' +
+                "school='" + schoolId + '\'' +
+                ", _class='" + classId + '\'' +
                 '}';
     }
 }
