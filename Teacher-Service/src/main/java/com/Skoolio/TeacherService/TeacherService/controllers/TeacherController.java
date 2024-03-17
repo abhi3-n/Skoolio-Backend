@@ -5,6 +5,7 @@ import com.Skoolio.TeacherService.TeacherService.entities.Teacher;
 import com.Skoolio.TeacherService.TeacherService.model.RegisterResponse;
 import com.Skoolio.TeacherService.TeacherService.model.TeacherRegistrationMail;
 import com.Skoolio.TeacherService.TeacherService.services.KafkaService;
+import com.Skoolio.TeacherService.TeacherService.services.MailService;
 import com.Skoolio.TeacherService.TeacherService.services.TeacherService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/teacher")
 public class TeacherController {
     @Autowired
+    private MailService mailService;
+    @Autowired
     private TeacherService teacherService;
     @Autowired
     private KafkaService kafkaService;
@@ -23,7 +26,7 @@ public class TeacherController {
     @PostMapping
     public ResponseEntity<?> registerTeacher(@RequestBody Teacher teacher) throws JsonProcessingException {
         Teacher teacher1 = teacherService.createTeacher(teacher);
-        sendTeacherRegistrationMail(teacher.getEmail(), teacher.getRegistrationId(), teacher.getTeacherSchoolDetails().getSchoolId());
+        mailService.sendTeacherRegistrationMail(teacher.getEmail(), teacher.getRegistrationId(), teacher.getTeacherSchoolDetails().getSchoolId());
 
         return ResponseEntity.status(HttpStatus.OK).body(new RegisterResponse(teacher1.getRegistrationId(),"registered"));
     }

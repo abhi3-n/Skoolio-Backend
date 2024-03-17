@@ -1,6 +1,6 @@
 package com.Skoolio.StudentService.StudentSerivce.entities;
 
-import com.Skoolio.StudentService.StudentSerivce.model.*;
+import com.Skoolio.StudentService.StudentSerivce.model.userDetails.*;
 import com.Skoolio.StudentService.StudentSerivce.utils.UniqueIdGenerator;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -31,7 +31,7 @@ public class Student {
     private Character gender;
     @Column(nullable = false)
     private String nationality;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
     @Column(nullable = false)
     private String password;

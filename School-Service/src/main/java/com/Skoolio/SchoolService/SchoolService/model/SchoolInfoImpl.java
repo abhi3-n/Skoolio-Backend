@@ -14,8 +14,8 @@ public class SchoolInfoImpl implements SchoolRepository.SchoolInfo {
     private Integer schoolId;
     private String schoolName;
 //    private AddressDetails addressDetails;
-    private String addressLine;
-    private String city;
-    private String state;
-    private String pincode;
+//    private String addressLine;
+//    private String city;
+//    private String state;
+//    private String pincode;
 }

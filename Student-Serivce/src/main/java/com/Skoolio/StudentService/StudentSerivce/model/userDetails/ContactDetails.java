@@ -1,4 +1,4 @@
-package com.Skoolio.StudentService.StudentSerivce.model;
+package com.Skoolio.StudentService.StudentSerivce.model.userDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
