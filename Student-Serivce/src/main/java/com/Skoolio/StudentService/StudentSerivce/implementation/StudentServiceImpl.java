@@ -7,6 +7,7 @@ import com.Skoolio.StudentService.StudentSerivce.repositories.StudentRepository;
 import com.Skoolio.StudentService.StudentSerivce.services.StudentService;
 import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -36,8 +37,18 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public ResponseEntity<LoginResponse> studentLogin(LoginRequest loginRequest) {
+        List<String> password = studentRepository.findPasswordByEmail(loginRequest.getEmail());
 
-        return null;
+        if(password.isEmpty()){
+            System.out.println("Email not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new LoginResponse("denied","No user found with this email.", null));
+        }
+        if(!password.get(0).equals(loginRequest.getPassword())){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new LoginResponse("denied","Wrong Password.", null));
+        }
+        List<Student> student = studentRepository.findByEmail(loginRequest.getEmail());
+        student.get(0).setPassword(null);
+        return ResponseEntity.status(HttpStatus.OK).body(new LoginResponse("Approved","Correct Password.", student.get(0)));
     }
 
     @Override

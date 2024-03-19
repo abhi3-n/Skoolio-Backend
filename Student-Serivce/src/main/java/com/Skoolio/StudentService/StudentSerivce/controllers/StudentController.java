@@ -42,13 +42,10 @@ public class StudentController {
     }
 
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<LoginResponse> studentLogin(@RequestBody LoginRequest loginRequest){
+        loginRequest.toString();
         return studentService.studentLogin(loginRequest);
-//        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(loginResponse);
-//        return ResponseEntity.status(HttpStatus.OK).body(loginResponse);
-//        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(loginResponse);
-
     }
 
     @PatchMapping("/approve/{studentId}")
