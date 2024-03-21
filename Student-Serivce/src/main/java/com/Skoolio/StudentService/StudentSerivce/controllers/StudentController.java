@@ -44,7 +44,6 @@ public class StudentController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> studentLogin(@RequestBody LoginRequest loginRequest){
-        loginRequest.toString();
         return studentService.studentLogin(loginRequest);
     }
 

@@ -24,4 +24,11 @@ public class TeachersController {
         List<Teacher> listOfTeachers = teacherService.getTeachersBySchoolId(Integer.valueOf(schoolId));
         return ResponseEntity.status(HttpStatus.OK).body(listOfTeachers);
     }
+
+    //Returns list of student Ids whose registration approval is pending.
+    @GetMapping("/approvalPending/{schoolId}")
+    public ResponseEntity<List<Teacher>> getStudentsWithPendingApproval(@PathVariable Integer schoolId){
+        List<Teacher> list = teacherService.getTeachersWithPendingApproval(schoolId);
+        return ResponseEntity.status(HttpStatus.OK).body(list);
+    }
 }

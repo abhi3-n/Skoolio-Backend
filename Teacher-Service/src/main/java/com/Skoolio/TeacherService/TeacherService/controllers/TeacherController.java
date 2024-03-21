@@ -1,9 +1,11 @@
 package com.Skoolio.TeacherService.TeacherService.controllers;
 
 
+
 import com.Skoolio.TeacherService.TeacherService.entities.Teacher;
 import com.Skoolio.TeacherService.TeacherService.model.RegisterResponse;
-import com.Skoolio.TeacherService.TeacherService.model.TeacherRegistrationMail;
+import com.Skoolio.TeacherService.TeacherService.model.login.LoginRequest;
+import com.Skoolio.TeacherService.TeacherService.model.login.LoginResponse;
 import com.Skoolio.TeacherService.TeacherService.services.KafkaService;
 import com.Skoolio.TeacherService.TeacherService.services.MailService;
 import com.Skoolio.TeacherService.TeacherService.services.TeacherService;
@@ -37,12 +39,15 @@ public class TeacherController {
         return ResponseEntity.status(HttpStatus.OK).body(teacher);
     }
 
-
-    private void sendTeacherRegistrationMail(String email, String registrationId, Integer schoolId) throws JsonProcessingException {
-        TeacherRegistrationMail studentRegistrationMail = new TeacherRegistrationMail();
-        studentRegistrationMail.setUserMail(email);
-        studentRegistrationMail.setApplicationID(registrationId);
-        studentRegistrationMail.setSchoolId(schoolId);
-        kafkaService.sendStudentRegistrationMail(studentRegistrationMail);
+    @PatchMapping("/approve/{teacherId}")
+    public ResponseEntity<String> approveTeacher(@PathVariable String teacherId){
+        teacherService.approveTeacher(teacherId);
+        return ResponseEntity.status(HttpStatus.OK).body("Approval succeeded");
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> studentLogin(@RequestBody LoginRequest loginRequest){
+        return teacherService.teacherLogin(loginRequest);
+    }
+
 }

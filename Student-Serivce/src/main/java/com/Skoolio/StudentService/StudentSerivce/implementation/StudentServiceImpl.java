@@ -41,10 +41,10 @@ public class StudentServiceImpl implements StudentService {
 
         if(password.isEmpty()){
             System.out.println("Email not found");
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new LoginResponse("denied","No user found with this email.", null));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
         if(!password.get(0).equals(loginRequest.getPassword())){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new LoginResponse("denied","Wrong Password.", null));
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
         List<Student> student = studentRepository.findByEmail(loginRequest.getEmail());
         student.get(0).setPassword(null);
