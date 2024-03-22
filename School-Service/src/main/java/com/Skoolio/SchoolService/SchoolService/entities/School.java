@@ -33,7 +33,7 @@ public class School {
 
 
     public void toLowerCase(){
-        this.schoolName = this.schoolName.toLowerCase();
+//        this.schoolName = this.schoolName.toLowerCase();
         this.addressDetails.setAddressLine(this.addressDetails.getAddressLine().toLowerCase());
         this.addressDetails.setCity(this.addressDetails.getCity().toLowerCase());
         this.addressDetails.setState(this.addressDetails.getState().toLowerCase());

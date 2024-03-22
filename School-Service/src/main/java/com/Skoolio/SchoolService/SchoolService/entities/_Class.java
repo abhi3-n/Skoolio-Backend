@@ -24,7 +24,6 @@ public class _Class {
     @ManyToOne
     @JoinColumn(name = "school_id", nullable = false)
     private School schoolId;
-//    private Integer schoolId;
 
     public void toLowerCase() {
         this.grade = this.grade.toLowerCase();

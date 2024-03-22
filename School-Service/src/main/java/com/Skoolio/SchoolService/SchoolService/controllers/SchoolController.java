@@ -30,5 +30,6 @@ public class SchoolController {
         School school = schoolService.getSchool(Integer.valueOf(schoolId));
         return ResponseEntity.status(HttpStatus.OK).body(school);
     }
+
 }
 

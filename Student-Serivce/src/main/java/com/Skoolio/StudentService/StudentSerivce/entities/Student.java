@@ -103,6 +103,8 @@ public class Student {
         this.mother.setMotherOccupation(this.mother.getMotherOccupation().toLowerCase());
         this.mother.setMotherQualification(this.mother.getMotherQualification().toLowerCase());
         this.setMot(this.getMot().toLowerCase());
+
+        this.studentSchoolDetails.setAdmissionClass(this.studentSchoolDetails.getAdmissionClass().toLowerCase());
     }
 
     public void genRegId(){

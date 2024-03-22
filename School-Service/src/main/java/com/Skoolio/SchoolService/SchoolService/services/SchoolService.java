@@ -1,6 +1,7 @@
 package com.Skoolio.SchoolService.SchoolService.services;
 
 import com.Skoolio.SchoolService.SchoolService.repositories.SchoolRepository;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -17,4 +18,7 @@ public interface SchoolService {
 
 
     List<SchoolRepository.SchoolInfo> getSchoolsByCity(String city);
+
+    ResponseEntity<List<String>> getCitiesList();
+
 }

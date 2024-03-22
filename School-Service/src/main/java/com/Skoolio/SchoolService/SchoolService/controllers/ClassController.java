@@ -1,17 +1,14 @@
 package com.Skoolio.SchoolService.SchoolService.controllers;
 
 
-import com.Skoolio.SchoolService.SchoolService.entities.School;
 import com.Skoolio.SchoolService.SchoolService.entities._Class;
 import com.Skoolio.SchoolService.SchoolService.model.RegisterResponse;
 import com.Skoolio.SchoolService.SchoolService.services.ClassService;
-import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -30,5 +27,10 @@ public class ClassController {
     public ResponseEntity<List<_Class>> findBySchoolId(@PathVariable String schoolId){
         List<_Class> lst = classService.findBySchoolId(Integer.valueOf(schoolId));
         return ResponseEntity.status(HttpStatus.OK).body(lst);
+    }
+
+    @GetMapping("/classListForSchool/{schoolId}")
+    public ResponseEntity<List<String>> getClassNameListForSchool(@PathVariable String schoolId){
+        return classService.getClassNameListForSchool(Integer.valueOf(schoolId));
     }
 }

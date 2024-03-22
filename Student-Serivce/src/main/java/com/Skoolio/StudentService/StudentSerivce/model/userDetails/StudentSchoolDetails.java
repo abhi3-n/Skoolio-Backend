@@ -18,12 +18,15 @@ public class StudentSchoolDetails {
     private Integer schoolId; //TODO: Need to use school id instead
     @Column(nullable = false)
     private String classId;
+    @Column(nullable = false)
+    private String admissionClass;
 
     @Override
     public String toString() {
         return "StudentSchoolDetails{" +
-                "school='" + schoolId + '\'' +
-                ", _class='" + classId + '\'' +
+                "schoolId=" + schoolId +
+                ", classId='" + classId + '\'' +
+                ", admissionClass='" + admissionClass + '\'' +
                 '}';
     }
 }
