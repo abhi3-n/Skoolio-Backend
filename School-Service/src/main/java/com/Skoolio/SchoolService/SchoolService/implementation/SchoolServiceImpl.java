@@ -1,6 +1,7 @@
 package com.Skoolio.SchoolService.SchoolService.implementation;
 
 import com.Skoolio.SchoolService.SchoolService.entities.School;
+import com.Skoolio.SchoolService.SchoolService.model.SchoolName;
 import com.Skoolio.SchoolService.SchoolService.repositories.SchoolRepository;
 import com.Skoolio.SchoolService.SchoolService.services.SchoolService;
 import org.apache.kafka.common.errors.ResourceNotFoundException;
@@ -44,6 +45,18 @@ public class SchoolServiceImpl implements SchoolService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
         return ResponseEntity.status(HttpStatus.OK).body(cityList);
+    }
+
+    @Override
+    public ResponseEntity<SchoolName> getSchoolNameForSchoolId(Integer schoolId) {
+        List<String> schoolName = schoolRepository.findSchoolNameBySchoolId(schoolId);
+        for(String s: schoolName){
+            System.out.println(s);
+        }
+        if(schoolName.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(new SchoolName(schoolName.get(0)));
     }
 
 

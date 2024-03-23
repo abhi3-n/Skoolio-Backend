@@ -1,5 +1,6 @@
 package com.Skoolio.SchoolService.SchoolService.services;
 
+import com.Skoolio.SchoolService.SchoolService.model.SchoolName;
 import com.Skoolio.SchoolService.SchoolService.repositories.SchoolRepository;
 import org.springframework.http.ResponseEntity;
 
@@ -21,4 +22,5 @@ public interface SchoolService {
 
     ResponseEntity<List<String>> getCitiesList();
 
+    ResponseEntity<SchoolName> getSchoolNameForSchoolId(Integer schoolId);
 }

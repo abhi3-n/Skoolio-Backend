@@ -7,11 +7,13 @@ import java.util.List;
 
 public interface SchoolRepository extends JpaRepository<com.Skoolio.SchoolService.SchoolService.entities.School, Integer> {
 
+    @Query(value = "SELECT s.school_name FROM school s WHERE s.school_id = :schoolId", nativeQuery = true)
+    List<String> findSchoolNameBySchoolId(Integer schoolId);
 
 @Query(value = "SELECT s.school_id AS schoolId, s.school_name AS schoolName " +
         "FROM school s WHERE s.city = :city", nativeQuery = true)
-
 List<SchoolInfo> getSchoolsByCity(String city);
+
     public static interface SchoolInfo {
     Integer getSchoolId();
     String getSchoolName();
