@@ -2,6 +2,8 @@ package com.Skoolio.SchoolService.SchoolService.controllers;
 
 import com.Skoolio.SchoolService.SchoolService.entities.SchoolAdministrator;
 import com.Skoolio.SchoolService.SchoolService.model.RegisterResponse;
+import com.Skoolio.SchoolService.SchoolService.model.login.LoginRequest;
+import com.Skoolio.SchoolService.SchoolService.model.login.LoginResponse;
 import com.Skoolio.SchoolService.SchoolService.services.SchoolAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +21,7 @@ public class SchoolAdminController {
     public ResponseEntity<?> registerAdmin(@RequestBody SchoolAdministrator schoolAdministrator){
         schoolAdministrator.setRegistrationDate(LocalDateTime.now().toEpochSecond(java.time.ZoneOffset.UTC));
         SchoolAdministrator savedSchoolAdministrator = schoolAdminService.createAdmin(schoolAdministrator);
-        return ResponseEntity.status(HttpStatus.OK).body(new RegisterResponse(savedSchoolAdministrator.getAdminID(),"registered"));
+        return ResponseEntity.status(HttpStatus.OK).body(new RegisterResponse(savedSchoolAdministrator.getAdminId(),"registered"));
     }
 
     @GetMapping("/{adminId}")
@@ -28,4 +30,9 @@ public class SchoolAdminController {
         return ResponseEntity.status(HttpStatus.OK).body(schoolAdministrator);
     }
 
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> adminLogin(@RequestBody LoginRequest loginRequest){
+        return schoolAdminService.adminLogin(loginRequest);
+    }
 }

@@ -14,9 +14,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+@Table(name = "admin")
 public class SchoolAdministrator {
     @Id
-    private String adminID;
+    private String adminId;
     @Column(nullable = false)
     private String firstName;
     private String middleName;
@@ -26,12 +27,14 @@ public class SchoolAdministrator {
     private Long dob;
     @Column(nullable = false)
     private Character gender;
+    @Column(nullable = false)
+    private String nationality;
     @Column(nullable = false,unique = true)
     private String email;
     @Column(nullable = false)
     private String password;
     @Embedded
-    private AdminContactDetails adminContactDetails;
+    private AdminContactDetails contactDetails;
     @Embedded
     private AddressDetails addressDetails;
     @Column(nullable = false)
@@ -44,7 +47,7 @@ public class SchoolAdministrator {
 
 
     public void genAdminId(){
-        this.adminID = UniqueIdGenerator.generateAdminId(this.schoolId.getSchoolId().toString() + this.email);
+        this.adminId = UniqueIdGenerator.generateAdminId(this.schoolId.getSchoolId().toString() + this.email);
     }
 
     public void toLowerCase(){
@@ -52,8 +55,8 @@ public class SchoolAdministrator {
         this.middleName = this.middleName.toLowerCase();
         this.lastName = this.lastName.toLowerCase();
 
-        this.adminContactDetails.setPrimaryContactName(this.adminContactDetails.getPrimaryContactName().toLowerCase());
-        this.adminContactDetails.setAlternativeContactName(this.adminContactDetails.getAlternativeContactName().toLowerCase());
+        this.contactDetails.setPrimaryContactName(this.contactDetails.getPrimaryContactName().toLowerCase());
+        this.contactDetails.setAlternativeContactName(this.contactDetails.getAlternativeContactName().toLowerCase());
 
         this.addressDetails.setAddressLine(this.addressDetails.getAddressLine().toLowerCase());
         this.addressDetails.setState(this.addressDetails.getState().toLowerCase());

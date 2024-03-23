@@ -16,6 +16,5 @@ public class AddressDetails {
     private String city;
     @Column(nullable = false)
     private String state;
-    @Column(nullable = false)
-    private String pincode;
+
 }
