@@ -47,9 +47,9 @@ public class StudentController {
         return studentService.studentLogin(loginRequest);
     }
 
-    @PatchMapping("/approve/{studentId}")
-    public ResponseEntity<String> approveStudent(@PathVariable String studentId){
-        studentService.approveStudent(studentId);
-        return ResponseEntity.status(HttpStatus.OK).body("Approval succeeded");
+    @PatchMapping("/approve/{studentId}/{classId}")
+    public ResponseEntity<String> approveStudent(@PathVariable String studentId, @PathVariable String classId){
+        studentService.approveStudent(studentId, classId);
+        return ResponseEntity.status(HttpStatus.OK).body("");
     }
 }

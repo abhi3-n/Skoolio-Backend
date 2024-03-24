@@ -18,5 +18,5 @@ public interface StudentService {
 
     List<Student> getStudentsWithPendingApproval(Integer schoolId);
 
-    void approveStudent(String studentId);
+    void approveStudent(String studentId, String classId);
 }

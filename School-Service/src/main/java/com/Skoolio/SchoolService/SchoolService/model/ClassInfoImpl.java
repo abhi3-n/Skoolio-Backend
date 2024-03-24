@@ -14,4 +14,14 @@ import lombok.Setter;
 public class ClassInfoImpl implements ClassRepository._ClassInfo {
     private String classId;
     private String grade;
+    private String section;
+
+    @Override
+    public String toString() {
+        return "ClassInfoImpl{" +
+                "classId='" + classId + '\'' +
+                ", grade='" + grade + '\'' +
+                ", section='" + section + '\'' +
+                '}';
+    }
 }

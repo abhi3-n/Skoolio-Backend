@@ -58,7 +58,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void approveStudent(String studentId) {
-        studentRepository.updateStatusByStudentId("active", studentId);
+    public void approveStudent(String studentId, String classId) {
+        studentRepository.updateStatusByStudentId("active", studentId, classId);
     }
 }

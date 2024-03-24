@@ -41,4 +41,21 @@ public class ClassServiceImpl implements ClassService {
         }
         return ResponseEntity.status(HttpStatus.OK).body(listOfClasses);
     }
+
+    @Override
+    public ResponseEntity<List<ClassRepository._ClassInfo>> getClassInfoList(Integer schoolId,String grade) {
+        List<ClassRepository._ClassInfo> list =  classRepository.getClassInfoList(grade, schoolId);
+
+        if(!list.isEmpty()){
+            for(ClassRepository._ClassInfo i :list){
+                System.out.println("class_id - "+i.getClassId()+", grade - "+i.getGrade()+", section - "+ i.getSection());
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(list);
+        }
+//        for(ClassRepository._ClassInfo _class:list){
+//            System.out.println(_class.toString());
+//        }
+        System.out.println("List is empty for "+schoolId+", grade - " + grade);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
 }
