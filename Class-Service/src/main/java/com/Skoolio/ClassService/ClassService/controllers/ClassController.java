@@ -23,11 +23,7 @@ public class ClassController {
         return ResponseEntity.status(HttpStatus.OK).body(new RegisterResponse(_class1.getClassId().toString(),"created"));
     }
 
-    @GetMapping("/{schoolId}")
-    public ResponseEntity<List<_Class>> findBySchoolId(@PathVariable String schoolId){
-        List<_Class> lst = classService.findBySchoolId(Integer.valueOf(schoolId));
-        return ResponseEntity.status(HttpStatus.OK).body(lst);
-    }
+
 
     @GetMapping("/classListForSchool/{schoolId}")
     public ResponseEntity<List<String>> getClassNameListForSchool(@PathVariable String schoolId){

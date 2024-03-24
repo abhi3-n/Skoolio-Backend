@@ -27,7 +27,7 @@ spring:
         - id: CLASS-SERVICE
           uri: lb://CLASS-SERVICE
           predicates:
-            - Path=/class/**,/classes/**
+            - Path=/class/**,/classes/**,/attendance/**
 
           
 

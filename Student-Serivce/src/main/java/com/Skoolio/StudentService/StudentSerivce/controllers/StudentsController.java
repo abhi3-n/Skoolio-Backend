@@ -2,6 +2,7 @@ package com.Skoolio.StudentService.StudentSerivce.controllers;
 
 
 import com.Skoolio.StudentService.StudentSerivce.entities.Student;
+import com.Skoolio.StudentService.StudentSerivce.repositories.StudentRepository;
 import com.Skoolio.StudentService.StudentSerivce.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,8 +18,8 @@ public class StudentsController {
     private StudentService studentService;
 
     @GetMapping("/{classId}")
-    public ResponseEntity<List<Student>> getStudentsByClassId(@PathVariable String classId) {
-        List<Student> listOfStudents = studentService.getStudentsByClassId(classId);
+    public ResponseEntity<List<StudentRepository.StudentInfo>> getStudentsByClassId(@PathVariable String classId) {
+        List<StudentRepository.StudentInfo> listOfStudents = studentService.getStudentsByClassId(classId);
         return ResponseEntity.status(HttpStatus.OK).body(listOfStudents);
     }
 

@@ -9,8 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface StudentRepository extends JpaRepository<Student,String> {
-    List<Student> findByStudentSchoolDetailsClassId(String classId);
-
     List<Student> findByStatusAndStudentSchoolDetailsSchoolId(String status, Integer schoolId);
 
 
@@ -24,4 +22,14 @@ public interface StudentRepository extends JpaRepository<Student,String> {
 
 
     List<Student> findByEmail(String email);
+
+    @Query(value = "SELECT s.student_id as studentId, s.first_name, s.middle_name, s.last_name FROM student s WHERE s.class_id = :classId", nativeQuery = true)
+    List<StudentInfo> findByStudentSchoolDetailsClassId(String classId);
+    public static interface StudentInfo {
+        String getStudentId();
+        String getFirstName();
+        String getMiddleName();
+        String getLastName();
+
+    }
 }

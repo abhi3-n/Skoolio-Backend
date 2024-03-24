@@ -30,8 +30,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Student> getStudentsByClassId(String classId) {
-        List<Student> listOfStudents= studentRepository.findByStudentSchoolDetailsClassId(classId);
+    public List<StudentRepository.StudentInfo> getStudentsByClassId(String classId) {
+        List<StudentRepository.StudentInfo> listOfStudents= studentRepository.findByStudentSchoolDetailsClassId(classId);
         return listOfStudents;
     }
 
