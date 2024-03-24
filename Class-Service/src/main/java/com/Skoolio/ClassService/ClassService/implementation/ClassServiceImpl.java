@@ -1,8 +1,8 @@
-package com.Skoolio.SchoolService.SchoolService.implementation;
+package com.Skoolio.ClassService.ClassService.implementation;
 
-import com.Skoolio.SchoolService.SchoolService.entities._Class;
-import com.Skoolio.SchoolService.SchoolService.repositories.ClassRepository;
-import com.Skoolio.SchoolService.SchoolService.services.ClassService;
+import com.Skoolio.ClassService.ClassService.entities._Class;
+import com.Skoolio.ClassService.ClassService.repositories.ClassRepository;
+import com.Skoolio.ClassService.ClassService.services.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +22,7 @@ public class ClassServiceImpl implements ClassService {
 
     @Override
     public List<_Class> findBySchoolId(Integer schoolId) {
-        return classRepository.findBySchoolIdSchoolId(schoolId);
+        return classRepository.findBySchoolId(schoolId);
     }
 
     @Override

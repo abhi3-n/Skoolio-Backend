@@ -1,13 +1,13 @@
-package com.Skoolio.SchoolService.SchoolService.repositories;
+package com.Skoolio.ClassService.ClassService.repositories;
 
-import com.Skoolio.SchoolService.SchoolService.entities._Class;
+import com.Skoolio.ClassService.ClassService.entities._Class;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
 public interface ClassRepository extends JpaRepository<_Class, String> {
-    List<_Class> findBySchoolIdSchoolId(Integer schoolId);
+    List<_Class> findBySchoolId(Integer schoolId);
 
     @Query(value = "SELECT DISTINCT c.grade FROM _class c WHERE c.school_id = :schoolId", nativeQuery = true)
     List<String> findDistinctClassForSchool(Integer schoolId);

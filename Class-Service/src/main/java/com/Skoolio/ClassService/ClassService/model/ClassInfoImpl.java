@@ -1,6 +1,6 @@
-package com.Skoolio.SchoolService.SchoolService.model;
+package com.Skoolio.ClassService.ClassService.model;
 
-import com.Skoolio.SchoolService.SchoolService.repositories.ClassRepository;
+import com.Skoolio.ClassService.ClassService.repositories.ClassRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,10 @@
-package com.Skoolio.SchoolService.SchoolService.entities;
+package com.Skoolio.ClassService.ClassService.entities;
 
-import com.Skoolio.SchoolService.SchoolService.utils.UniqueIdGenerator;
-import jakarta.persistence.*;
+import com.Skoolio.ClassService.ClassService.utils.UniqueIdGenerator;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,9 +24,8 @@ public class _Class {
     private String grade;
     private String section;
     private String classTeacherId;
-    @ManyToOne
-    @JoinColumn(name = "school_id", nullable = false)
-    private School schoolId;
+    @Column(nullable = false)
+    private Integer schoolId;
 
     public void toLowerCase() {
         this.grade = this.grade.toLowerCase();
@@ -31,7 +33,7 @@ public class _Class {
     }
 
     public void genClassId(){
-        this.classId = UniqueIdGenerator.generateClassId(this.schoolId.getSchoolId().toString() +
+        this.classId = UniqueIdGenerator.generateClassId(this.getSchoolId().toString() +
                 this.grade +
                 this.section);
     }

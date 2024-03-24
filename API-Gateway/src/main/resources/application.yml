@@ -23,7 +23,11 @@ spring:
         - id: SCHOOL-SERVICE
           uri: lb://SCHOOL-SERVICE
           predicates:
-            - Path=/school/**,/schools/**,/admin/**,/admins/**,/class/**,/classes/**
+            - Path=/school/**,/schools/**,/admin/**,/admins/**
+        - id: CLASS-SERVICE
+          uri: lb://CLASS-SERVICE
+          predicates:
+            - Path=/class/**,/classes/**
 
           
 

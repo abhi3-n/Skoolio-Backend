@@ -1,9 +1,9 @@
-package com.Skoolio.SchoolService.SchoolService.controllers;
+package com.Skoolio.ClassService.ClassService.controllers;
 
 
-import com.Skoolio.SchoolService.SchoolService.entities._Class;
-import com.Skoolio.SchoolService.SchoolService.model.RegisterResponse;
-import com.Skoolio.SchoolService.SchoolService.services.ClassService;
+import com.Skoolio.ClassService.ClassService.entities._Class;
+import com.Skoolio.ClassService.ClassService.model.RegisterResponse;
+import com.Skoolio.ClassService.ClassService.services.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

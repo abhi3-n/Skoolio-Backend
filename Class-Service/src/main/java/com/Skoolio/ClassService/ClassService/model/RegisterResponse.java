@@ -1,4 +1,4 @@
-package com.Skoolio.SchoolService.SchoolService.model;
+package com.Skoolio.ClassService.ClassService.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClassInfoRequest {
-    private String schoolId;
-    private String admissionClass;
+public class RegisterResponse {
+    private String id;
+    private String status;
 }

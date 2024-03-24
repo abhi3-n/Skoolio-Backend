@@ -1,7 +1,7 @@
-package com.Skoolio.SchoolService.SchoolService.services;
+package com.Skoolio.ClassService.ClassService.services;
 
-import com.Skoolio.SchoolService.SchoolService.entities._Class;
-import com.Skoolio.SchoolService.SchoolService.repositories.ClassRepository;
+import com.Skoolio.ClassService.ClassService.entities._Class;
+import com.Skoolio.ClassService.ClassService.repositories.ClassRepository;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -15,5 +15,5 @@ public interface ClassService {
 
     ResponseEntity<List<String>> getClassNameListForSchool(Integer schoolId);
 
-    ResponseEntity<List<ClassRepository._ClassInfo>> getClassInfoList(Integer schoolId,String admissionClass);
+    ResponseEntity<List<ClassRepository._ClassInfo>> getClassInfoList(Integer schoolId, String admissionClass);
 }

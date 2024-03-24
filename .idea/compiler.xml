@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="API-Gateway" />
+        <module name="Class-Service" />
         <module name="Service-Discovery" />
         <module name="Skoolio" />
         <module name="School-Service" />
@@ -21,6 +22,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="API-Gateway" options="-parameters" />
+      <module name="Class-Service" options="-parameters" />
       <module name="Email-Service" options="-parameters" />
       <module name="School-Service" options="-parameters" />
       <module name="Service-Discovery" options="-parameters" />

@@ -1,7 +1,6 @@
 package com.Skoolio.SchoolService.SchoolService.repositories;
 
 import com.Skoolio.SchoolService.SchoolService.entities.SchoolAdministrator;
-import com.Skoolio.SchoolService.SchoolService.entities._Class;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
