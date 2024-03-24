@@ -36,4 +36,13 @@ public class AttendanceId implements Serializable {
     public int hashCode() {
         return Objects.hash(date, studentId, classId);
     }
+
+    @Override
+    public String toString() {
+        return "AttendanceId{" +
+                "date=" + date +
+                ", studentId='" + studentId + '\'' +
+                ", classId='" + classId + '\'' +
+                '}';
+    }
 }

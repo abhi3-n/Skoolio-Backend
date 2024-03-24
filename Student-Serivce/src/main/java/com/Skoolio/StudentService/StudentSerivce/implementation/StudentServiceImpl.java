@@ -32,6 +32,9 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<StudentRepository.StudentInfo> getStudentsByClassId(String classId) {
         List<StudentRepository.StudentInfo> listOfStudents= studentRepository.findByStudentSchoolDetailsClassId(classId);
+        for(StudentRepository.StudentInfo info:listOfStudents){
+            System.out.println(info.getStudentId()+", "+info.getFirstName()+", "+info.getLastName());
+        }
         return listOfStudents;
     }
 

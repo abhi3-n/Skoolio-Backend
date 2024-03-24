@@ -16,4 +16,14 @@ public class StudentInfoImpl implements StudentRepository.StudentInfo {
     private String firstName;
     private String middleName;
     private String lastName;
+
+    @Override
+    public String toString() {
+        return "StudentInfoImpl{" +
+                "studentId='" + studentId + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }

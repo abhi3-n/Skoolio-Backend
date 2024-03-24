@@ -47,7 +47,7 @@ public class SchoolAdministrator {
 
 
     public void genAdminId(){
-        this.adminId = UniqueIdGenerator.generateAdminId(this.schoolId.getSchoolId().toString() + this.email);
+        this.adminId = UniqueIdGenerator.generateUniqueId(this.schoolId.getSchoolId().toString() + this.email);
     }
 
     public void toLowerCase(){

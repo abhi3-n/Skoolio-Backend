@@ -33,7 +33,7 @@ public class _Class {
     }
 
     public void genClassId(){
-        this.classId = UniqueIdGenerator.generateClassId(this.getSchoolId().toString() +
+        this.classId = UniqueIdGenerator.generateUniqueId(this.getSchoolId().toString() +
                 this.grade +
                 this.section);
     }
