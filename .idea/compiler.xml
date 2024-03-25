@@ -13,11 +13,13 @@
         <module name="Skoolio" />
         <module name="School-Service" />
         <module name="Student-Serivce" />
-        <module name="demo" />
         <module name="Teacher-Service" />
         <module name="Email-Service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="demo" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
