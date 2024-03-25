@@ -8,7 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
+
+import static com.fasterxml.jackson.databind.type.LogicalType.Map;
 
 @Service
 public class ClassServiceImpl implements ClassService {
@@ -18,6 +22,15 @@ public class ClassServiceImpl implements ClassService {
     public _Class createClass(_Class _class) {
         _class.genClassId();
         return classRepository.save(_class);
+    }
+
+    @Override
+    public List<_Class> findByClassTeacherId(String classTeacherId) {
+        List<_Class> listOfClasses = classRepository.findByClassTeacherId(classTeacherId);
+        for (_Class _class:listOfClasses){
+            System.out.println(_class.getGrade()+" "+_class.getSection());
+        }
+        return listOfClasses;
     }
 
     @Override
@@ -51,5 +64,19 @@ public class ClassServiceImpl implements ClassService {
         }
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
+
+    @Override
+    public ResponseEntity<?> setClassTeacherIdForClass(String classId, String classTeacherId) {
+        HashMap<String, String> response = new HashMap<>();
+        try {
+            classRepository.updateClassTeacherIdByClassId(classId, classTeacherId);
+            response.put("status", "successful");
+        }
+        catch (Exception e){
+            response.put("status", "unsuccessful");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

@@ -16,4 +16,8 @@ public interface ClassService {
     ResponseEntity<List<String>> getClassNameListForSchool(Integer schoolId);
 
     ResponseEntity<List<ClassRepository._ClassInfo>> getClassInfoList(Integer schoolId, String admissionClass);
+
+    ResponseEntity<?> setClassTeacherIdForClass(String classId, String classTeacherId);
+
+    List<_Class> findByClassTeacherId(String classTeacherId);
 }

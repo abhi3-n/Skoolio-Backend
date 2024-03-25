@@ -22,9 +22,17 @@ public class ClassesController {
 
     @GetMapping("/{schoolId}")
     public ResponseEntity<List<_Class>> findBySchoolId(@PathVariable String schoolId){
-        List<_Class> lst = classService.findBySchoolId(Integer.valueOf(schoolId));
-        return ResponseEntity.status(HttpStatus.OK).body(lst);
+        List<_Class> listOfClasses = classService.findBySchoolId(Integer.valueOf(schoolId));
+        return ResponseEntity.status(HttpStatus.OK).body(listOfClasses);
     }
+
+    @GetMapping("/classTeacherId/{classTeacherId}")
+    public ResponseEntity<List<_Class>> findByClassTeacherId(@PathVariable String classTeacherId){
+        List<_Class> listOfClasses = classService.findByClassTeacherId(classTeacherId);
+        return ResponseEntity.status(HttpStatus.OK).body(listOfClasses);
+    }
+
+
 
     //This endpoint provides a list of classes (classId, grade, section) for given schoolId and grade(admissionClass). So that admin can assign a classs to student, who is seeking approval
     @GetMapping("/classInfoList/{schoolId}/{admissionClass}")
@@ -32,5 +40,7 @@ public class ClassesController {
         System.out.println("schoolid - "+schoolId+", admissionClass - "+admissionClass);
         return classService.getClassInfoList(Integer.valueOf(schoolId),admissionClass);
     }
+
+
 
 }
