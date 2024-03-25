@@ -2,6 +2,7 @@ package com.Skoolio.TeacherService.TeacherService.controllers;
 
 import com.Skoolio.TeacherService.TeacherService.entities.Teacher;
 import com.Skoolio.TeacherService.TeacherService.services.TeacherService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ public class TeachersController {
     private TeacherService teacherService;
 
     @GetMapping("/{schoolId}")
+    @Operation(summary = "This endpoint is used to fetch teachers of a school.")
     public ResponseEntity<?> getTeacherBySchoolId(@PathVariable String schoolId){
         List<Teacher> listOfTeachers = teacherService.getTeachersBySchoolId(Integer.valueOf(schoolId));
         return ResponseEntity.status(HttpStatus.OK).body(listOfTeachers);
@@ -27,6 +29,7 @@ public class TeachersController {
 
     //Returns list of student Ids whose registration approval is pending.
     @GetMapping("/approvalPending/{schoolId}")
+    @Operation(summary = "This endpoint is used to fetch teachers whose registration approval is pending.")
     public ResponseEntity<List<Teacher>> getStudentsWithPendingApproval(@PathVariable String schoolId){
         List<Teacher> list = teacherService.getTeachersWithPendingApproval(Integer.valueOf(schoolId));
         return ResponseEntity.status(HttpStatus.OK).body(list);

@@ -2,6 +2,7 @@ package com.Skoolio.ClassService.ClassService.controllers;
 
 import com.Skoolio.ClassService.ClassService.entities.Attendance;
 import com.Skoolio.ClassService.ClassService.services.AttendanceService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,8 +19,8 @@ public class AttendanceController {
     private AttendanceService attendanceService;
 
     @PostMapping
+    @Operation(summary = "This endpoint is used to submit attendance entries")
     public ResponseEntity<?> submitAttendance(@RequestBody List<Attendance> list){
-//    public void submitAttendance(@RequestBody Attendance attendance){
         return attendanceService.submitAttendance(list);
     }
 }

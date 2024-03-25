@@ -4,6 +4,7 @@ package com.Skoolio.ClassService.ClassService.controllers;
 import com.Skoolio.ClassService.ClassService.entities._Class;
 import com.Skoolio.ClassService.ClassService.repositories.ClassRepository;
 import com.Skoolio.ClassService.ClassService.services.ClassService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +22,14 @@ public class ClassesController {
     private ClassService classService;
 
     @GetMapping("/{schoolId}")
+    @Operation(summary = "This endpoint is used to get classes of a school.")
     public ResponseEntity<List<_Class>> findBySchoolId(@PathVariable String schoolId){
         List<_Class> listOfClasses = classService.findBySchoolId(Integer.valueOf(schoolId));
         return ResponseEntity.status(HttpStatus.OK).body(listOfClasses);
     }
 
     @GetMapping("/classTeacherId/{classTeacherId}")
+    @Operation(summary = "This endpoint is used to get classes for a class teacher id.")
     public ResponseEntity<List<_Class>> findByClassTeacherId(@PathVariable String classTeacherId){
         List<_Class> listOfClasses = classService.findByClassTeacherId(classTeacherId);
         return ResponseEntity.status(HttpStatus.OK).body(listOfClasses);
@@ -36,8 +39,8 @@ public class ClassesController {
 
     //This endpoint provides a list of classes (classId, grade, section) for given schoolId and grade(admissionClass). So that admin can assign a classs to student, who is seeking approval
     @GetMapping("/classInfoList/{schoolId}/{admissionClass}")
+    @Operation(summary = "This endpoint is used to get ClassInfo(classId, grade and section) list for a school and grade.")
     public ResponseEntity<List<ClassRepository._ClassInfo>> getClassInfoList(@PathVariable String schoolId, @PathVariable String admissionClass){
-        System.out.println("schoolid - "+schoolId+", admissionClass - "+admissionClass);
         return classService.getClassInfoList(Integer.valueOf(schoolId),admissionClass);
     }
 

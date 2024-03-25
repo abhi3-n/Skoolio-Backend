@@ -17,4 +17,5 @@ public class StudentSerivceApplication {
 	public RestTemplate restTemplate(){
 		return new RestTemplate();
 	}
+
 }

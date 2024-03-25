@@ -2,6 +2,7 @@ package com.Skoolio.SchoolService.SchoolService.controllers;
 
 import com.Skoolio.SchoolService.SchoolService.entities.SchoolAdministrator;
 import com.Skoolio.SchoolService.SchoolService.services.SchoolAdminService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.ws.rs.Path;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ public class SchoolAdminsController {
     private SchoolAdminService schoolAdminService;
 
     @GetMapping("/{schoolId}")
+    @Operation(summary = "This endpoint is used to get all admins of a school.")
     public ResponseEntity<?> getAllSchoolAdminsBySchoolId(@PathVariable String schoolId){
         List<SchoolAdministrator> adminList = schoolAdminService.getAdminsBySchoolId(Integer.valueOf(schoolId));
         return ResponseEntity.status(HttpStatus.OK).body(adminList);
