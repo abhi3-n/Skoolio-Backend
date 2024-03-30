@@ -5,6 +5,7 @@ import com.Skoolio.EmailService.EmailService.models.EmailOtpResponse;
 import com.Skoolio.EmailService.EmailService.services.EmailService;
 import com.Skoolio.EmailService.EmailService.utils.Constants;
 import com.Skoolio.EmailService.EmailService.utils.RandomOTPGenerator;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ public class EmailController {
     private Constants constants;
 
     @PostMapping()
+    @Operation(summary = "This endpoint is used to send an OTP for mail verification.")
     public ResponseEntity<?> sendRegistrationOTPMail(@RequestBody EmailOtpRequest emailOtpRequest){
         int otp = RandomOTPGenerator.generateOTP();
         String message = constants.getRegistrationOTPBody1() + String.valueOf(otp) + constants.getRegistrationOTPBody2();
