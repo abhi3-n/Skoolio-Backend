@@ -29,7 +29,7 @@ public class SchoolController {
 
     @GetMapping("/{schoolId}")
     @Operation(summary = "This endpoint is used to get the information about a school by schoolId.")
-    public ResponseEntity<School> getSchoolById(@PathVariable String schoolId){
+    public ResponseEntity<School> getSchoolById(@PathVariable String schoolId) throws InterruptedException {
         School school = schoolService.getSchool(Integer.valueOf(schoolId));
         return ResponseEntity.status(HttpStatus.OK).body(school);
     }

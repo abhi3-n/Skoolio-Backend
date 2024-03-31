@@ -46,6 +46,11 @@ public class SchoolAdministrator {
     private School schoolId;
 
 
+//    @Lob
+//    @Column(columnDefinition = "BLOB")
+//    private byte[] image;
+
+
     public void genAdminId(){
         this.adminId = UniqueIdGenerator.generateUniqueId(this.schoolId.getSchoolId().toString() + this.email);
     }

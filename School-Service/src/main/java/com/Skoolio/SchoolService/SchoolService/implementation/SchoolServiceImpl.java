@@ -29,7 +29,9 @@ public class SchoolServiceImpl implements SchoolService {
     }
 
     @Override
-    public School getSchool(Integer schoolId) {
+    public School getSchool(Integer schoolId) throws InterruptedException {
+        System.out.println("Request Made");
+        Thread.sleep(3000);
         return schoolRepository.findById(schoolId).orElseThrow(()-> new ResourceNotFoundException("Requested School Id not found" + schoolId));
     }
 

@@ -5,6 +5,7 @@ import com.Skoolio.StudentService.StudentSerivce.model.login.LoginRequest;
 import com.Skoolio.StudentService.StudentSerivce.model.login.LoginResponse;
 import com.Skoolio.StudentService.StudentSerivce.repositories.StudentRepository;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -20,4 +21,6 @@ public interface StudentService {
     List<Student> getStudentsWithPendingApproval(Integer schoolId);
 
     void approveStudent(String studentId, String classId);
+
+    void updateImage(String id, MultipartFile image);
 }

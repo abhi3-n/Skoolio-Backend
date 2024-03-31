@@ -15,7 +15,7 @@ public interface SchoolService {
     List<com.Skoolio.SchoolService.SchoolService.entities.School> getAllSchools();
 
     //get a school
-    com.Skoolio.SchoolService.SchoolService.entities.School getSchool(Integer schoolId);
+    com.Skoolio.SchoolService.SchoolService.entities.School getSchool(Integer schoolId) throws InterruptedException;
 
 
     List<SchoolRepository.SchoolInfo> getSchoolsByCity(String city);

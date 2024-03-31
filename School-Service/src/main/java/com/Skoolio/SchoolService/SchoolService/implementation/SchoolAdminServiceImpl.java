@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SchoolAdminServiceImpl implements SchoolAdminService {
@@ -33,7 +34,11 @@ public class SchoolAdminServiceImpl implements SchoolAdminService {
 
     @Override
     public List<SchoolAdministrator> getAdminsBySchoolId(Integer schoolId) {
-        return schoolAdminRepo.findBySchoolIdSchoolId(schoolId);
+        List<SchoolAdministrator> listOfAdmins = schoolAdminRepo.findBySchoolIdSchoolId(schoolId).stream().map(schoolAdministrator -> {
+            schoolAdministrator.setPassword(null);
+            return schoolAdministrator;
+        }).collect(Collectors.toList());
+        return listOfAdmins;
     }
 
     @Override

@@ -14,6 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/student")
@@ -53,5 +57,16 @@ public class StudentController {
     public ResponseEntity<String> approveStudent(@PathVariable String studentId, @PathVariable String classId){
         studentService.approveStudent(studentId, classId);
         return ResponseEntity.status(HttpStatus.OK).body("");
+    }
+
+
+    @PostMapping("/image")
+    public ResponseEntity<?> submitStudentImage(@RequestParam String id, @RequestParam MultipartFile image) throws IOException {
+        System.out.println("id - "+id);
+        System.out.println("image name-" + image.getOriginalFilename());
+        studentService.updateImage(id, image);
+        HashMap<String,String> hashMap= new HashMap<String, String>();
+        hashMap.put("status", "registered");
+        return ResponseEntity.status(HttpStatus.OK).body(hashMap);
     }
 }

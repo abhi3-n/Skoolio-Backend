@@ -51,6 +51,11 @@ public class Teacher {
     private String registrationId;
     private String status;
 
+
+//    @Lob
+//    @Column(columnDefinition = "BLOB")
+//    private byte[] image;
+
     public void genRegId() {
         this.setRegistrationId(UniqueIdGenerator.generateUniqueId(this.registrationDate.toString() + this.teacherSchoolDetails.getSchoolId().toString() + this.email));
     }

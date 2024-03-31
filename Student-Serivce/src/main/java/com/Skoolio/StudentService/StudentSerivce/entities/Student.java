@@ -2,10 +2,7 @@ package com.Skoolio.StudentService.StudentSerivce.entities;
 
 import com.Skoolio.StudentService.StudentSerivce.model.userDetails.*;
 import com.Skoolio.StudentService.StudentSerivce.utils.UniqueIdGenerator;
-import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -52,6 +49,10 @@ public class Student {
     @Column(nullable = false)
     private String status;
     private String mot;
+
+//    @Lob
+//    @Column(columnDefinition = "BLOB")
+//    private byte[] image;
 
     @Override
     public String toString() {

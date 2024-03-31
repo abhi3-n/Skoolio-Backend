@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -63,5 +64,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void approveStudent(String studentId, String classId) {
         studentRepository.updateStatusByStudentId("active", studentId, classId);
+    }
+
+    @Override
+    public void updateImage(String id, MultipartFile image) {
+//        studentImageRepository.save(studentImage);
     }
 }
