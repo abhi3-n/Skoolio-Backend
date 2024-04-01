@@ -22,9 +22,11 @@ public interface StudentRepository extends JpaRepository<Student,String> {
 
 
     List<Student> findByEmail(String email);
+    List<Student> findByStudentSchoolDetailsClassId(String classId);
+
 
     @Query(value = "SELECT s.student_id as studentId, s.first_name as firstName, s.middle_name as middleName, s.last_name as lastName FROM student s WHERE s.class_id = :classId", nativeQuery = true)
-    List<StudentInfo> findByStudentSchoolDetailsClassId(String classId);
+    List<StudentInfo> findByClassId(String classId);
     public static interface StudentInfo {
         String getStudentId();
         String getFirstName();

@@ -31,11 +31,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<StudentRepository.StudentInfo> getStudentsByClassId(String classId) {
-        List<StudentRepository.StudentInfo> listOfStudents= studentRepository.findByStudentSchoolDetailsClassId(classId);
-        for(StudentRepository.StudentInfo info:listOfStudents){
-            System.out.println(info.getStudentId()+", "+info.getFirstName()+", "+info.getLastName());
-        }
+    public List<Student> getStudentsListByClassId(String classId) {
+        List<Student> listOfStudents= studentRepository.findByStudentSchoolDetailsClassId(classId);
+        return listOfStudents;
+    }
+
+    @Override
+    public List<StudentRepository.StudentInfo> getStudentsInfoByClassId(String classId) {
+        List<StudentRepository.StudentInfo> listOfStudents= studentRepository.findByClassId(classId);
         return listOfStudents;
     }
 

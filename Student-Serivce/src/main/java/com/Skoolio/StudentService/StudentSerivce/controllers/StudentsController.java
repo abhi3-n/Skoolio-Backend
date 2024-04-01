@@ -22,9 +22,16 @@ public class StudentsController {
     private StudentService studentService;
 
     @GetMapping("/{classId}")
-    @Operation(summary = "This endpoint is used to fetch students that belong to a class.")
-    public ResponseEntity<List<StudentRepository.StudentInfo>> getStudentsByClassId(@PathVariable String classId) {
-        List<StudentRepository.StudentInfo> listOfStudents = studentService.getStudentsByClassId(classId);
+    @Operation(summary = "This endpoint is used to fetch students' info (full) for a class.")
+    public ResponseEntity<List<Student>> getStudentsListByClassId(@PathVariable String classId) {
+        List<Student> listOfStudents = studentService.getStudentsListByClassId(classId);
+        return ResponseEntity.status(HttpStatus.OK).body(listOfStudents);
+    }
+
+    @GetMapping("/info/{classId}")
+    @Operation(summary = "This endpoint is used to fetch students' info (minimal) that belong to a class.")
+    public ResponseEntity<List<StudentRepository.StudentInfo>> getStudentsInfoByClassId(@PathVariable String classId) {
+        List<StudentRepository.StudentInfo> listOfStudents = studentService.getStudentsInfoByClassId(classId);
         return ResponseEntity.status(HttpStatus.OK).body(listOfStudents);
     }
 

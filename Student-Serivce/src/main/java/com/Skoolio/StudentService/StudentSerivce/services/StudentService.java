@@ -14,7 +14,7 @@ public interface StudentService {
 
     Student getStudentById(String studentId);
 
-    List<StudentRepository.StudentInfo> getStudentsByClassId(String classId);
+    List<StudentRepository.StudentInfo> getStudentsInfoByClassId(String classId);
 
     ResponseEntity<LoginResponse> studentLogin(LoginRequest loginRequest);
 
@@ -23,4 +23,6 @@ public interface StudentService {
     void approveStudent(String studentId, String classId);
 
     void updateImage(String id, MultipartFile image);
+
+    List<Student> getStudentsListByClassId(String classId);
 }
