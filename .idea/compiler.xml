@@ -10,6 +10,7 @@
         <module name="API-Gateway" />
         <module name="Class-Service" />
         <module name="Service-Discovery" />
+        <module name="Issue-Service" />
         <module name="School-Service" />
         <module name="Student-Serivce" />
         <module name="Teacher-Service" />
@@ -26,6 +27,7 @@
       <module name="API-Gateway" options="-parameters" />
       <module name="Class-Service" options="-parameters" />
       <module name="Email-Service" options="-parameters" />
+      <module name="Issue-Service" options="-parameters" />
       <module name="School-Service" options="-parameters" />
       <module name="Service-Discovery" options="-parameters" />
       <module name="Skoolio" options="-parameters" />
