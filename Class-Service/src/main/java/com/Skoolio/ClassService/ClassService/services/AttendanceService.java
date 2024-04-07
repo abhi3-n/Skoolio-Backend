@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface AttendanceService {
     ResponseEntity<?> submitAttendance(List<Attendance> list);
+
+    List<Attendance> getAttendanceListForRange(Long start, Long end, String studentId);
 }
