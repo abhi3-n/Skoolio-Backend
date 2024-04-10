@@ -6,6 +6,8 @@ import com.skoolio.IssueService.IssueService.services.IssueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class IssueServiceImpl implements IssueService {
     @Autowired
@@ -19,5 +21,10 @@ public class IssueServiceImpl implements IssueService {
         catch (Exception e){
             return null;
         }
+    }
+
+    @Override
+    public List<Issue> getIssuesForStudent(String studentId, Character status) {
+        return issueRepository.findByCreatorIdAndStatus(studentId, status);
     }
 }

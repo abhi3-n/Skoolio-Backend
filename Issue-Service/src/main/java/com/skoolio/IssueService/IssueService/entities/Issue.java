@@ -19,6 +19,8 @@ public class Issue {
     private Long creationTime;
     private Character creatorType; //a student('s') or a teacher('t') can raise issues
     private String creatorId;
+    private Integer schoolId;
+    private String classId;
     private String title;
     private String description;
     private IssueMessage[] issueMessages;

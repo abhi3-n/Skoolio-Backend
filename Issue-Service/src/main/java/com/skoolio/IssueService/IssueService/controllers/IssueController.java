@@ -4,7 +4,6 @@ package com.skoolio.IssueService.IssueService.controllers;
 import com.skoolio.IssueService.IssueService.entities.Issue;
 import com.skoolio.IssueService.IssueService.services.IssueService;
 import org.apache.http.HttpStatus;
-import org.apache.http.protocol.HTTP;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,4 +31,7 @@ public class IssueController {
             return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+
+
 }
