@@ -18,7 +18,6 @@ public class IssuesController {
 
     @GetMapping("/student/{studentId}/{status}")
     public ResponseEntity<?> getIssuesForStudent(@PathVariable String studentId, @PathVariable String status){
-        System.out.println("getIssuesForStudent +" + status);
         try {
             List<Issue> issueList = issueService.getIssuesForStudent(studentId, status.charAt(0));
             if (!issueList.isEmpty()) {

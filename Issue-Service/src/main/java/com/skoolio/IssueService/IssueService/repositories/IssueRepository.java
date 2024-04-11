@@ -10,4 +10,6 @@ public interface IssueRepository
 {
 //    List<Issue> findByCreatorId(String creatorId);
     List<Issue> findByCreatorIdAndStatus(String creatorId, char status);
+
+    Issue findByIssueId(String issueId);
 }
