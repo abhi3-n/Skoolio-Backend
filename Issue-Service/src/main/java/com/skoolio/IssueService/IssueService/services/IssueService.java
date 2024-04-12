@@ -14,4 +14,8 @@ public interface IssueService {
     void addIssueMessageToList(IssueMessage issueMessage, String issueId);
 
     void closeIssue(String issueId);
+
+    List<Issue> getIssuesForAdmin(Integer schoolId, Character status);
+
+    List<Issue> getIssuesForTeacher(String classId, Character status);
 }

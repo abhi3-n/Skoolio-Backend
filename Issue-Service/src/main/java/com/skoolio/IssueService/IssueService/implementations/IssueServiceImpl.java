@@ -4,12 +4,9 @@ import com.skoolio.IssueService.IssueService.entities.Issue;
 import com.skoolio.IssueService.IssueService.entities.IssueMessage;
 import com.skoolio.IssueService.IssueService.repositories.IssueRepository;
 import com.skoolio.IssueService.IssueService.services.IssueService;
-import model.IssueMessageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +28,16 @@ public class IssueServiceImpl implements IssueService {
     @Override
     public List<Issue> getIssuesForStudent(String studentId, Character status) {
         return issueRepository.findByCreatorIdAndStatus(studentId, status);
+    }
+
+    @Override
+    public List<Issue> getIssuesForAdmin(Integer schoolId, Character status) {
+        return issueRepository.findBySchoolIdAndStatus(schoolId, status);
+    }
+
+    @Override
+    public List<Issue> getIssuesForTeacher(String classId, Character status) {
+        return issueRepository.findByClassIdAndStatus(classId, status);
     }
 
     @Override

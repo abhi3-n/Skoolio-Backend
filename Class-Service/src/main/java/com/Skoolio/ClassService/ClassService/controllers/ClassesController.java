@@ -35,7 +35,11 @@ public class ClassesController {
         return ResponseEntity.status(HttpStatus.OK).body(listOfClasses);
     }
 
-
+    @GetMapping("/classTeacherId/classInfo/{classTeacherId}")
+    @Operation(summary = "This endpoint is used to get ClassInfo of classes for a class teacher id.")
+    public ResponseEntity<List<ClassRepository._ClassInfo>> findClassInfoByTeacherId(@PathVariable String classTeacherId){
+        return classService.getClassInfoListForTeacherId(classTeacherId);
+    }
 
     //This endpoint provides a list of classes (classId, grade, section) for given schoolId and grade(admissionClass). So that admin can assign a classs to student, who is seeking approval
     @GetMapping("/classInfoList/{schoolId}/{admissionClass}")

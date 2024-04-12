@@ -20,4 +20,6 @@ public interface ClassService {
     ResponseEntity<?> setClassTeacherIdForClass(String classId, String classTeacherId);
 
     List<_Class> findByClassTeacherId(String classTeacherId);
+
+    ResponseEntity<List<ClassRepository._ClassInfo>> getClassInfoListForTeacherId(String classTeacherId);
 }

@@ -34,6 +34,17 @@ public class ClassServiceImpl implements ClassService {
     }
 
     @Override
+    public ResponseEntity<List<ClassRepository._ClassInfo>> getClassInfoListForTeacherId(String classTeacherId) {
+        List<ClassRepository._ClassInfo> list =  classRepository.getClassInfoListForClassTeacherId(classTeacherId);
+
+        if(!list.isEmpty()){
+            return ResponseEntity.status(HttpStatus.OK).body(list);
+        }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
+
+    @Override
     public List<_Class> findBySchoolId(Integer schoolId) {
         return classRepository.findBySchoolId(schoolId);
     }

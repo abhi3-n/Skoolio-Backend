@@ -21,6 +21,7 @@ public class IssueController {
 
     @PostMapping
     public ResponseEntity<?> registerAnIssue(@RequestBody Issue issue){
+        System.out.println(issue.toString());
         String issueId = issueService.saveIssue(issue);
         if(issueId!=null) {
             HashMap hashMap = new HashMap<String,String>();
