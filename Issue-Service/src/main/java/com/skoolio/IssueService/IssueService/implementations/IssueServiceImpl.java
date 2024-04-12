@@ -46,4 +46,18 @@ public class IssueServiceImpl implements IssueService {
             System.out.println("Issue with id: " + issueId + " not found");
         }
     }
+
+    @Override
+    public void closeIssue(String issueId) {
+        Optional<Issue> existingIssue = issueRepository.findById(issueId);
+        if (existingIssue.isPresent()) {
+            Issue issueToUpdate = existingIssue.get();
+            issueToUpdate.closeIssue();
+            issueRepository.save(issueToUpdate);
+        }
+        else{
+            //TODO:Throw exception from here
+            System.out.println("Issue with id: " + issueId + " not found");
+        }
+    }
 }

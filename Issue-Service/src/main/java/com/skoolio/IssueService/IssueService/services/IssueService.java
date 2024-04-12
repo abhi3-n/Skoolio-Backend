@@ -12,4 +12,6 @@ public interface IssueService {
     List<Issue> getIssuesForStudent(String studentId, Character status);
 
     void addIssueMessageToList(IssueMessage issueMessage, String issueId);
+
+    void closeIssue(String issueId);
 }

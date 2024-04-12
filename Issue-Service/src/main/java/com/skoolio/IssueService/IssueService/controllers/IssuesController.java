@@ -20,11 +20,11 @@ public class IssuesController {
     public ResponseEntity<?> getIssuesForStudent(@PathVariable String studentId, @PathVariable String status){
         try {
             List<Issue> issueList = issueService.getIssuesForStudent(studentId, status.charAt(0));
-            if (!issueList.isEmpty()) {
+//            if (!issueList.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.SC_OK).body(issueList);
-            } else {
-                return ResponseEntity.status(HttpStatus.SC_NOT_FOUND).body(null);
-            }
+//            } else {
+//                return ResponseEntity.status(HttpStatus.SC_NOT_FOUND).body(null);
+//            }
         }
         catch (Exception e){
             return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(null);

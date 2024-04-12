@@ -62,4 +62,8 @@ public class Issue implements Serializable {
         }
         this.issueMessages.add(issueMessage);
     }
+
+    public void closeIssue() {
+        this.status = 'c';
+    }
 }
