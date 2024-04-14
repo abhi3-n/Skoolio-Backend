@@ -26,6 +26,8 @@ public class _Class {
     private String classTeacherId;
     @Column(nullable = false)
     private Integer schoolId;
+    @Column(nullable = false)
+    private Float fees;
 
     public void toLowerCase() {
         this.grade = this.grade.toLowerCase();
