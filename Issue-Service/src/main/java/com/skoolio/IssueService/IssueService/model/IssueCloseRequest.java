@@ -1,4 +1,4 @@
-package model;
+package com.skoolio.IssueService.IssueService.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
