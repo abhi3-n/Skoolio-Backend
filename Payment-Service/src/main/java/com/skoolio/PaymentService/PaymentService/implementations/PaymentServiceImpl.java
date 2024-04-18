@@ -1,6 +1,7 @@
 package com.skoolio.PaymentService.PaymentService.implementations;
 
 import com.skoolio.PaymentService.PaymentService.entities.Payment;
+import com.skoolio.PaymentService.PaymentService.model.PaymentUpdateRequest;
 import com.skoolio.PaymentService.PaymentService.repositories.PaymentRepository;
 import com.skoolio.PaymentService.PaymentService.services.OrderService;
 import com.skoolio.PaymentService.PaymentService.services.PaymentService;
@@ -40,6 +41,13 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public List<Payment> getFeesListForStudent(String studentId, String status) {
         return paymentRepository.findByStudentIdAndStatus(studentId,status);
+    }
+
+    @Override
+    public void updatePaymentRequest(PaymentUpdateRequest paymentUpdateRequest) {
+        paymentRepository.updatePaymentDetails(paymentUpdateRequest.getStudentId(),
+                paymentUpdateRequest.getPaymentId(),
+                paymentUpdateRequest.getAmount(), paymentUpdateRequest.getPaymentDate(), "paid");
     }
 }
 /*

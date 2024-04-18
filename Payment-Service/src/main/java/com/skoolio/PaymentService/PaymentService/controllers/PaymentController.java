@@ -1,6 +1,7 @@
 package com.skoolio.PaymentService.PaymentService.controllers;
 
 import com.skoolio.PaymentService.PaymentService.entities.Payment;
+import com.skoolio.PaymentService.PaymentService.model.PaymentUpdateRequest;
 import com.skoolio.PaymentService.PaymentService.services.PaymentService;
 import com.skoolio.PaymentService.PaymentService.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,17 @@ public class PaymentController {
         HashMap data = new HashMap<String,String>();
         data.put("apiKey", Constants.keyId);
         return ResponseEntity.status(HttpStatus.OK).body(data);
+    }
+
+    @PatchMapping
+    public ResponseEntity<?> updatePaymentRequest(@RequestBody PaymentUpdateRequest paymentUpdateRequest){
+        try{
+            System.out.println(paymentUpdateRequest.toString());
+            paymentService.updatePaymentRequest(paymentUpdateRequest);
+            return ResponseEntity.status(HttpStatus.OK).body("Updated");
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 }

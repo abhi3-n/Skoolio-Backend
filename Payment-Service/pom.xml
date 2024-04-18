@@ -75,7 +75,11 @@
 			<artifactId>okhttp</artifactId>
 			<version>5.0.0-alpha.12</version>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+    </dependencies>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
