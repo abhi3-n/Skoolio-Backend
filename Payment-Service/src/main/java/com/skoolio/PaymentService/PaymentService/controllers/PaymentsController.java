@@ -3,7 +3,6 @@ package com.skoolio.PaymentService.PaymentService.controllers;
 
 import com.skoolio.PaymentService.PaymentService.entities.Payment;
 import com.skoolio.PaymentService.PaymentService.services.PaymentService;
-import jakarta.ws.rs.Path;
 import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +29,18 @@ public class PaymentsController {
         catch (Exception e){
             return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(null);
         }
+    }
 
+    @GetMapping("/{schoolId}/{studentId}/{status}")
+    public ResponseEntity<?> getFeesListForStudent(@PathVariable String schoolId,@PathVariable String studentId, @PathVariable String status){
+        //TODO: First we need to verify if the student velongs to this school or not. If not, we won't send details to requestor
+        System.out.println(schoolId);
+        try {
+            List<Payment> paymentsList = paymentService.getFeesListForStudent(studentId, status);
+            return ResponseEntity.status(HttpStatus.SC_OK).body(paymentsList);
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 }

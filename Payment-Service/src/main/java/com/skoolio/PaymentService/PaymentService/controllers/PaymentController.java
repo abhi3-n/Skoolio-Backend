@@ -43,10 +43,10 @@ public class PaymentController {
         try{
             System.out.println(paymentUpdateRequest.toString());
             paymentService.updatePaymentRequest(paymentUpdateRequest);
-            return ResponseEntity.status(HttpStatus.OK).body("Updated");
+            return ResponseEntity.status(HttpStatus.OK).body(null);
         }
         catch (Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 }
