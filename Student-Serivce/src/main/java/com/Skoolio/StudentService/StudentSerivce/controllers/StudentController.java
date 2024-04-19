@@ -45,6 +45,15 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.OK).body(student);
     }
 
+    @GetMapping("/name/{studentId}")
+    @Operation(summary = "This endpoint is used to get the name of a student by studentId.")
+    public ResponseEntity<?> getStudentNameById(@PathVariable String studentId) {
+        String name = studentService.getStudentNameById(studentId);
+        HashMap hashMap = new HashMap();
+        hashMap.put("name",name);
+        return ResponseEntity.status(HttpStatus.OK).body(hashMap);
+    }
+
 
     @PostMapping("/login")
     @Operation(summary = "This endpoint is used to verify login for student.")

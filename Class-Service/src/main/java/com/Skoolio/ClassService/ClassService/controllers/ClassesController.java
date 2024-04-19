@@ -28,6 +28,19 @@ public class ClassesController {
         return ResponseEntity.status(HttpStatus.OK).body(listOfClasses);
     }
 
+    @GetMapping("/classInfo/{schoolId}")
+    @Operation(summary = "This endpoint is used to get list of classInfo of a school.")
+    public ResponseEntity<List<ClassRepository._ClassInfo>> findClassInfoBySchoolId(@PathVariable String schoolId){
+        try {
+            List<ClassRepository._ClassInfo> listOfClassInfo = classService.findClassInfoBySchoolId(Integer.valueOf(schoolId));
+            return ResponseEntity.status(HttpStatus.OK).body(listOfClassInfo);
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+
     @GetMapping("/classTeacherId/{classTeacherId}")
     @Operation(summary = "This endpoint is used to get classes for a class teacher id.")
     public ResponseEntity<List<_Class>> findByClassTeacherId(@PathVariable String classTeacherId){

@@ -25,4 +25,6 @@ public interface StudentService {
     void updateImage(String id, MultipartFile image);
 
     List<Student> getStudentsListByClassId(String classId);
+
+    String getStudentNameById(String studentId);
 }

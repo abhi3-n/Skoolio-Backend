@@ -27,11 +27,13 @@ public interface StudentRepository extends JpaRepository<Student,String> {
 
     @Query(value = "SELECT s.student_id as studentId, s.first_name as firstName, s.middle_name as middleName, s.last_name as lastName FROM student s WHERE s.class_id = :classId", nativeQuery = true)
     List<StudentInfo> findByClassId(String classId);
+
     public static interface StudentInfo {
         String getStudentId();
         String getFirstName();
         String getMiddleName();
         String getLastName();
-
     }
+    @Query(value = "SELECT CONCAT(first_name, ' ', middle_name, ' ' ,last_name) FROM student WHERE student_id = :studentId", nativeQuery = true)
+    String findNameByStudentId(String studentId);
 }

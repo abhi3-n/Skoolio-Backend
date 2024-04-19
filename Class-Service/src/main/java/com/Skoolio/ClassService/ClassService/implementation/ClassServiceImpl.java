@@ -45,6 +45,11 @@ public class ClassServiceImpl implements ClassService {
     }
 
     @Override
+    public List<ClassRepository._ClassInfo> findClassInfoBySchoolId(Integer schoolId) {
+        return classRepository.getClassInfoListForSchoolId(schoolId);
+    }
+
+    @Override
     public List<_Class> findBySchoolId(Integer schoolId) {
         return classRepository.findBySchoolId(schoolId);
     }

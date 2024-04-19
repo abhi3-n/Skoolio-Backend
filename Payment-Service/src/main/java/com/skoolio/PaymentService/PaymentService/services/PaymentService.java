@@ -11,4 +11,6 @@ public interface PaymentService {
     List<Payment> getFeesListForStudent(String studentId, String status);
 
     void updatePaymentRequest(PaymentUpdateRequest paymentUpdateRequest);
+
+    List<Payment> getFeePaymentsForMonthAndClassId(Long monthEpoch, String classId);
 }

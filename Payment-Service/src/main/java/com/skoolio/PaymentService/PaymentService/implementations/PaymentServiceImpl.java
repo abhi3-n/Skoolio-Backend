@@ -44,6 +44,11 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
+    public List<Payment> getFeePaymentsForMonthAndClassId(Long monthEpoch, String classId) {
+        return paymentRepository.findByFeeMonthEpochAndClassId(monthEpoch, classId);
+    }
+
+    @Override
     public void updatePaymentRequest(PaymentUpdateRequest paymentUpdateRequest) {
         paymentRepository.updatePaymentDetails(paymentUpdateRequest.getStudentId(),
                 paymentUpdateRequest.getPaymentId(),

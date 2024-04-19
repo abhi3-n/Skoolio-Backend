@@ -32,11 +32,22 @@ public class PaymentsController {
     }
 
     @GetMapping("/{schoolId}/{studentId}/{status}")
-    public ResponseEntity<?> getFeesListForStudent(@PathVariable String schoolId,@PathVariable String studentId, @PathVariable String status){
+    public ResponseEntity<?> getFeeListForStudent(@PathVariable String schoolId,@PathVariable String studentId, @PathVariable String status){
         //TODO: First we need to verify if the student velongs to this school or not. If not, we won't send details to requestor
         System.out.println(schoolId);
         try {
             List<Payment> paymentsList = paymentService.getFeesListForStudent(studentId, status);
+            return ResponseEntity.status(HttpStatus.SC_OK).body(paymentsList);
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @GetMapping("/monthlyData/{monthEpoch}/{classId}")
+    public ResponseEntity<?> getFeePaymentsForMonthAndClassId(@PathVariable String monthEpoch,@PathVariable String classId){
+        try {
+            List<Payment> paymentsList = paymentService.getFeePaymentsForMonthAndClassId(Long.parseLong(monthEpoch), classId);
             return ResponseEntity.status(HttpStatus.SC_OK).body(paymentsList);
         }
         catch (Exception e){
