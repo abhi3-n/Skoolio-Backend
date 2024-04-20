@@ -2,15 +2,15 @@ package com.skoolio.PaymentService.PaymentService.controllers;
 
 
 import com.skoolio.PaymentService.PaymentService.entities.Payment;
+import com.skoolio.PaymentService.PaymentService.model.CreatePaymentsObj;
 import com.skoolio.PaymentService.PaymentService.services.PaymentService;
+import jakarta.ws.rs.POST;
 import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -52,6 +52,19 @@ public class PaymentsController {
         }
         catch (Exception e){
             return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @PostMapping("month")
+    public ResponseEntity<?> createFeePaymentsForMonth(@RequestBody CreatePaymentsObj createPaymentsObj){
+        try {
+            paymentService.createFeePaymentsForMonth(createPaymentsObj);
+            HashMap hashMap = new HashMap<String,String>();
+            hashMap.put("status", "Created");
+            return ResponseEntity.status(org.springframework.http.HttpStatus.OK).body(hashMap);
+        }
+        catch (Exception e){
+            return ResponseEntity.status(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.skoolio.PaymentService.PaymentService.implementations;
 
 import com.skoolio.PaymentService.PaymentService.entities.Payment;
+import com.skoolio.PaymentService.PaymentService.model.CreatePaymentsObj;
 import com.skoolio.PaymentService.PaymentService.model.PaymentUpdateRequest;
 import com.skoolio.PaymentService.PaymentService.repositories.PaymentRepository;
 import com.skoolio.PaymentService.PaymentService.services.OrderService;
@@ -46,6 +47,23 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public List<Payment> getFeePaymentsForMonthAndClassId(Long monthEpoch, String classId) {
         return paymentRepository.findByFeeMonthEpochAndClassId(monthEpoch, classId);
+    }
+
+    @Override
+    public void createFeePaymentsForMonth(CreatePaymentsObj createPaymentsObj) throws Exception {
+        try{
+            for(String id : createPaymentsObj.getListOfStudentId()){
+                createPayment(new Payment("",
+                        id,
+                        createPaymentsObj.getClassId(),
+                        createPaymentsObj.getFeeMonthEpoch(),
+                        createPaymentsObj.getFeeAmount(), //TODO:Need to make fee Amount type consistent
+                        "", 0,null,""));
+            }
+        }
+        catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
