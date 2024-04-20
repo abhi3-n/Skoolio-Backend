@@ -50,6 +50,11 @@ public class ClassServiceImpl implements ClassService {
     }
 
     @Override
+    public Float getFeeForClassID(String classId) {
+        return classRepository.findFeesByClassId(classId);
+    }
+
+    @Override
     public List<_Class> findBySchoolId(Integer schoolId) {
         return classRepository.findBySchoolId(schoolId);
     }

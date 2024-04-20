@@ -24,4 +24,6 @@ public interface ClassService {
     ResponseEntity<List<ClassRepository._ClassInfo>> getClassInfoListForTeacherId(String classTeacherId);
 
     List<ClassRepository._ClassInfo> findClassInfoBySchoolId(Integer schoolId);
+
+    Float getFeeForClassID(String classId);
 }

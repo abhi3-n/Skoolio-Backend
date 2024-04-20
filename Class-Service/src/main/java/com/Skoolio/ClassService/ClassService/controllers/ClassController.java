@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -36,5 +37,15 @@ public class ClassController {
     @Operation(summary = "This endpoint is used to set class teacher of a class")
     public ResponseEntity<?> setClassTeacherIdForClass(@RequestBody ClassTeacherIdInfo classTeacherIdInfo){
         return classService.setClassTeacherIdForClass(classTeacherIdInfo.getClassId(), classTeacherIdInfo.getClassTeacherId());
+    }
+
+    @GetMapping("/fee/{classId}")
+    @Operation(summary = "This endpoint is used to get fee amount for a class")
+    public ResponseEntity<?> getFeeForClassID(@PathVariable String classId){
+        System.out.println(classId);
+        Float fee = classService.getFeeForClassID(classId);
+        HashMap hashMap = new HashMap();
+        hashMap.put("fee",fee);
+        return ResponseEntity.status(HttpStatus.OK).body(hashMap);
     }
 }

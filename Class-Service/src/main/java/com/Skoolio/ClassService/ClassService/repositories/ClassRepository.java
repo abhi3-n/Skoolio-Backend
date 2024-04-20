@@ -28,6 +28,9 @@ public interface ClassRepository extends JpaRepository<_Class, String> {
     @Query(value = "SELECT c.class_id as classId, c.grade, c.section FROM _class c WHERE c.school_id = :schoolId", nativeQuery = true)
     List<_ClassInfo> getClassInfoListForSchoolId(Integer schoolId);
 
+    @Query(value = "SELECT c.fees FROM _class c WHERE c.class_id = :classId", nativeQuery = true)
+    Float findFeesByClassId(String classId);
+
     public static interface _ClassInfo {
 
         String getClassId();
