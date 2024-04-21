@@ -5,6 +5,7 @@ import com.Skoolio.StudentService.StudentSerivce.entities.Student;
 import com.Skoolio.StudentService.StudentSerivce.model.login.LoginRequest;
 import com.Skoolio.StudentService.StudentSerivce.model.login.LoginResponse;
 import com.Skoolio.StudentService.StudentSerivce.model.responses.RegisterResponse;
+import com.Skoolio.StudentService.StudentSerivce.model.userDetails.PasswordChangeRequest;
 import com.Skoolio.StudentService.StudentSerivce.model.userDetails.UpdateAddressDetails;
 import com.Skoolio.StudentService.StudentSerivce.model.userDetails.UpdateContactDetails;
 import com.Skoolio.StudentService.StudentSerivce.services.KafkaService;
@@ -100,6 +101,20 @@ public class StudentController {
         }
     }
 
+    @PatchMapping("/changePassword")
+    @Operation(summary = "This endpoint is used to update password of student.")
+    public ResponseEntity<?> changePassword(@RequestBody PasswordChangeRequest passwordChangeRequest){
+        try {
+            studentService.changePassword(passwordChangeRequest);
+            HashMap hashMap = new HashMap<>();
+            hashMap.put("status", "changed");
+            return ResponseEntity.status(HttpStatus.OK).body(hashMap);
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
     @PostMapping("/image")
     public ResponseEntity<?> submitStudentImage(@RequestParam String id, @RequestParam MultipartFile image) throws IOException {
         System.out.println("id - "+id);
@@ -109,6 +124,21 @@ public class StudentController {
         hashMap.put("status", "registered");
         return ResponseEntity.status(HttpStatus.OK).body(hashMap);
     }
+
+    @GetMapping("/verifyEmail/{email}")
+    @Operation(summary = "This endpoint is used to verify email of a student.")
+    public ResponseEntity<?> verifyEmail(@PathVariable String email){
+        try {
+            studentService.verifyEmail(email);
+            HashMap hashMap = new HashMap<>();
+            hashMap.put("status", "found");
+            return ResponseEntity.status(HttpStatus.OK).body(hashMap);
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
 
 
 }

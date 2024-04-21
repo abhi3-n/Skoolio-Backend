@@ -1,6 +1,7 @@
 package com.Skoolio.TeacherService.TeacherService.services;
 
 import com.Skoolio.TeacherService.TeacherService.entities.Teacher;
+import com.Skoolio.TeacherService.TeacherService.model.PasswordChangeRequest;
 import com.Skoolio.TeacherService.TeacherService.model.UpdateAddressDetails;
 import com.Skoolio.TeacherService.TeacherService.model.UpdateContactDetails;
 import com.Skoolio.TeacherService.TeacherService.model.login.LoginRequest;
@@ -25,4 +26,8 @@ public interface TeacherService {
     void updateAddress(UpdateAddressDetails updateAddressDetails);
 
     void updateContact(UpdateContactDetails updateContactDetails);
+
+    void verifyEmail(String email) throws Exception;
+
+    void changePassword(PasswordChangeRequest passwordChangeRequest);
 }

@@ -3,6 +3,7 @@ package com.Skoolio.StudentService.StudentSerivce.services;
 import com.Skoolio.StudentService.StudentSerivce.entities.Student;
 import com.Skoolio.StudentService.StudentSerivce.model.login.LoginRequest;
 import com.Skoolio.StudentService.StudentSerivce.model.login.LoginResponse;
+import com.Skoolio.StudentService.StudentSerivce.model.userDetails.PasswordChangeRequest;
 import com.Skoolio.StudentService.StudentSerivce.model.userDetails.UpdateAddressDetails;
 import com.Skoolio.StudentService.StudentSerivce.model.userDetails.UpdateContactDetails;
 import com.Skoolio.StudentService.StudentSerivce.repositories.StudentRepository;
@@ -33,4 +34,8 @@ public interface StudentService {
     void updateAddress(UpdateAddressDetails updatedAddress);
 
     void updateContact(UpdateContactDetails updateContactDetails);
+
+    void verifyEmail(String email) throws Exception;
+
+    void changePassword(PasswordChangeRequest passwordChangeRequest);
 }

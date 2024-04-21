@@ -4,11 +4,13 @@ import com.Skoolio.StudentService.StudentSerivce.entities.Student;
 import com.Skoolio.StudentService.StudentSerivce.model.login.LoginRequest;
 import com.Skoolio.StudentService.StudentSerivce.model.login.LoginResponse;
 import com.Skoolio.StudentService.StudentSerivce.model.userDetails.AddressDetails;
+import com.Skoolio.StudentService.StudentSerivce.model.userDetails.PasswordChangeRequest;
 import com.Skoolio.StudentService.StudentSerivce.model.userDetails.UpdateAddressDetails;
 import com.Skoolio.StudentService.StudentSerivce.model.userDetails.UpdateContactDetails;
 import com.Skoolio.StudentService.StudentSerivce.repositories.StudentRepository;
 import com.Skoolio.StudentService.StudentSerivce.services.StudentService;
 import org.apache.kafka.common.errors.ResourceNotFoundException;
+import org.apache.kafka.common.protocol.types.Field;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,6 +57,20 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.updateContactByStudentId(updateContactDetails.getId(),
                 updateContactDetails.getPrimaryContact(), updateContactDetails.getPrimaryContactName().toLowerCase(), updateContactDetails.getPrimaryContactRelation().toLowerCase(),
                 updateContactDetails.getAlternativeContact(), updateContactDetails.getAlternativeContactName().toLowerCase(), updateContactDetails.getAlternativeContactRelation().toLowerCase());
+    }
+
+    @Override
+    public void changePassword(PasswordChangeRequest passwordChangeRequest) {
+        studentRepository.updatePasswordByEmail(passwordChangeRequest.getEmail(), passwordChangeRequest.getNewPassword());
+    }
+
+    @Override
+    public void verifyEmail(String email) throws Exception {
+        List<String> list = studentRepository.findByEmailId(email);
+
+        if(list.isEmpty()){
+            throw new Exception("Student not Found");
+        }
     }
 
     @Override

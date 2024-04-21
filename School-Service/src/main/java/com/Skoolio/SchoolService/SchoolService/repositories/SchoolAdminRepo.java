@@ -27,4 +27,13 @@ public interface SchoolAdminRepo extends JpaRepository<SchoolAdministrator,Strin
             " alternative_contact = :alternativeContact, alternative_contact_name = :alternativeContactName WHERE admin_id = :adminId", nativeQuery = true)
     void updateContactByAdminId(String adminId, String primaryContact, String primaryContactName,
                                 String alternativeContact, String alternativeContactName);
+
+    @Query(value = "SELECT a.admin_id FROM admin a WHERE a.email = :email", nativeQuery = true)
+    List<String> findByEmailId(String email);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE admin SET password = :newPassword WHERE email = :email", nativeQuery = true)
+    void updatePasswordByEmail(String email, String newPassword);
+
 }

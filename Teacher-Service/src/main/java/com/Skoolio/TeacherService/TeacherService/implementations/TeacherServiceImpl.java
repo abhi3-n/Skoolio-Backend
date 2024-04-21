@@ -2,6 +2,7 @@ package com.Skoolio.TeacherService.TeacherService.implementations;
 
 import com.Skoolio.TeacherService.TeacherService.entities.Teacher;
 import com.Skoolio.TeacherService.TeacherService.model.AddressDetails;
+import com.Skoolio.TeacherService.TeacherService.model.PasswordChangeRequest;
 import com.Skoolio.TeacherService.TeacherService.model.UpdateAddressDetails;
 import com.Skoolio.TeacherService.TeacherService.model.UpdateContactDetails;
 import com.Skoolio.TeacherService.TeacherService.model.login.LoginRequest;
@@ -79,5 +80,19 @@ public class TeacherServiceImpl implements TeacherService {
         teacherRepository.updateContactByTeacherId(updateContactDetails.getId(),
                 updateContactDetails.getPrimaryContact(), updateContactDetails.getPrimaryContactName().toLowerCase(),
                 updateContactDetails.getAlternativeContact(), updateContactDetails.getAlternativeContactName().toLowerCase());
+    }
+
+    @Override
+    public void verifyEmail(String email) throws Exception {
+        List<String> list = teacherRepository.findByEmailId(email);
+
+        if(list.isEmpty()){
+            throw new Exception("Teacher not Found");
+        }
+    }
+
+    @Override
+    public void changePassword(PasswordChangeRequest passwordChangeRequest) {
+        teacherRepository.updatePasswordByEmail(passwordChangeRequest.getEmail(), passwordChangeRequest.getNewPassword());
     }
 }

@@ -2,6 +2,7 @@ package com.Skoolio.SchoolService.SchoolService.implementation;
 
 import com.Skoolio.SchoolService.SchoolService.entities.SchoolAdministrator;
 import com.Skoolio.SchoolService.SchoolService.model.AddressDetails;
+import com.Skoolio.SchoolService.SchoolService.model.PasswordChangeRequest;
 import com.Skoolio.SchoolService.SchoolService.model.UpdateAddressDetails;
 import com.Skoolio.SchoolService.SchoolService.model.UpdateContactDetails;
 import com.Skoolio.SchoolService.SchoolService.model.login.LoginRequest;
@@ -71,5 +72,19 @@ public class SchoolAdminServiceImpl implements SchoolAdminService {
         schoolAdminRepo.updateContactByAdminId(updateContactDetails.getId(),
                 updateContactDetails.getPrimaryContact(), updateContactDetails.getPrimaryContactName().toLowerCase(),
                 updateContactDetails.getAlternativeContact(), updateContactDetails.getAlternativeContactName().toLowerCase());
+    }
+
+    @Override
+    public void verifyEmail(String email) throws Exception {
+        List<String> list = schoolAdminRepo.findByEmailId(email);
+
+        if(list.isEmpty()){
+            throw new Exception("Student not Found");
+        }
+    }
+
+    @Override
+    public void changePassword(PasswordChangeRequest passwordChangeRequest) {
+        schoolAdminRepo.updatePasswordByEmail(passwordChangeRequest.getEmail(), passwordChangeRequest.getNewPassword());
     }
 }

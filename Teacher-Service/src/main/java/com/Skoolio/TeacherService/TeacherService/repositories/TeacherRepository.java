@@ -35,4 +35,12 @@ public interface TeacherRepository extends JpaRepository<Teacher,String> {
             " alternative_contact = :alternativeContact, alternative_contact_name = :alternativeContactName WHERE teacher_id = :teacherId", nativeQuery = true)
     void updateContactByTeacherId(String teacherId, String primaryContact, String primaryContactName,
                                   String alternativeContact, String alternativeContactName);
+
+    @Query(value = "SELECT t.teacher_id FROM teacher t WHERE t.email = :email", nativeQuery = true)
+    List<String> findByEmailId(String email);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE teacher SET password = :newPassword WHERE email = :email", nativeQuery = true)
+    void updatePasswordByEmail(String email, String newPassword);
 }

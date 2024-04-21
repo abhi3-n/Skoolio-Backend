@@ -1,6 +1,7 @@
 package com.Skoolio.SchoolService.SchoolService.controllers;
 
 import com.Skoolio.SchoolService.SchoolService.entities.SchoolAdministrator;
+import com.Skoolio.SchoolService.SchoolService.model.PasswordChangeRequest;
 import com.Skoolio.SchoolService.SchoolService.model.RegisterResponse;
 import com.Skoolio.SchoolService.SchoolService.model.UpdateAddressDetails;
 import com.Skoolio.SchoolService.SchoolService.model.UpdateContactDetails;
@@ -65,6 +66,34 @@ public class SchoolAdminController {
             schoolAdminService.updateContact(updateContactDetails);
             HashMap hashMap = new HashMap<>();
             hashMap.put("status", "updated");
+            return ResponseEntity.status(HttpStatus.OK).body(hashMap);
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @GetMapping("/verifyEmail/{email}")
+    @Operation(summary = "This endpoint is used to verify email of a admin.")
+    public ResponseEntity<?> verifyEmail(@PathVariable String email){
+        try {
+            schoolAdminService.verifyEmail(email);
+            HashMap hashMap = new HashMap<>();
+            hashMap.put("status", "found");
+            return ResponseEntity.status(HttpStatus.OK).body(hashMap);
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @PatchMapping("/changePassword")
+    @Operation(summary = "This endpoint is used to update password of admin.")
+    public ResponseEntity<?> changePassword(@RequestBody PasswordChangeRequest passwordChangeRequest){
+        try {
+            schoolAdminService.changePassword(passwordChangeRequest);
+            HashMap hashMap = new HashMap<>();
+            hashMap.put("status", "changed");
             return ResponseEntity.status(HttpStatus.OK).body(hashMap);
         }
         catch (Exception e){

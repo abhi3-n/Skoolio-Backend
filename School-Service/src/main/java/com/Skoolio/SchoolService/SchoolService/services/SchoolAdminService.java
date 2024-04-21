@@ -1,6 +1,7 @@
 package com.Skoolio.SchoolService.SchoolService.services;
 
 import com.Skoolio.SchoolService.SchoolService.entities.SchoolAdministrator;
+import com.Skoolio.SchoolService.SchoolService.model.PasswordChangeRequest;
 import com.Skoolio.SchoolService.SchoolService.model.UpdateAddressDetails;
 import com.Skoolio.SchoolService.SchoolService.model.UpdateContactDetails;
 import com.Skoolio.SchoolService.SchoolService.model.login.LoginRequest;
@@ -21,4 +22,8 @@ public interface SchoolAdminService {
     void updateAddress(UpdateAddressDetails updateAddressDetails);
 
     void updateContact(UpdateContactDetails updateContactDetails);
+
+    void verifyEmail(String email) throws Exception;
+
+    void changePassword(PasswordChangeRequest passwordChangeRequest);
 }
