@@ -5,6 +5,7 @@ import com.Skoolio.StudentService.StudentSerivce.entities.Student;
 import com.Skoolio.StudentService.StudentSerivce.model.login.LoginRequest;
 import com.Skoolio.StudentService.StudentSerivce.model.login.LoginResponse;
 import com.Skoolio.StudentService.StudentSerivce.model.responses.RegisterResponse;
+import com.Skoolio.StudentService.StudentSerivce.model.userDetails.UpdateAddressDetails;
 import com.Skoolio.StudentService.StudentSerivce.services.KafkaService;
 import com.Skoolio.StudentService.StudentSerivce.services.MailService;
 import com.Skoolio.StudentService.StudentSerivce.services.StudentService;
@@ -18,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/student")
@@ -68,6 +71,20 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.OK).body("");
     }
 
+    @PatchMapping("/address/")
+    @Operation(summary = "This endpoint is used to update address details of student.")
+    public ResponseEntity<?> updateAddress(@RequestBody UpdateAddressDetails updateAddressDetails){
+        try {
+            studentService.updateAddress(updateAddressDetails);
+            HashMap hashMap = new HashMap<>();
+            hashMap.put("status", "updated");
+            return ResponseEntity.status(HttpStatus.OK).body(hashMap);
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
 
     @PostMapping("/image")
     public ResponseEntity<?> submitStudentImage(@RequestParam String id, @RequestParam MultipartFile image) throws IOException {
@@ -78,4 +95,6 @@ public class StudentController {
         hashMap.put("status", "registered");
         return ResponseEntity.status(HttpStatus.OK).body(hashMap);
     }
+
+
 }

@@ -17,11 +17,16 @@ public interface StudentRepository extends JpaRepository<Student,String> {
     @Query(value = "UPDATE Student SET status = :status, class_id =:classId WHERE student_id = :studentId", nativeQuery = true)
     void updateStatusByStudentId(String status, String studentId, String classId);
 
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE Student SET address_line = :addressLine, city =:city, state = :state WHERE student_id = :studentId", nativeQuery = true)
+    void updateAddressByStudentId(String studentId, String addressLine, String city, String state);
+
     @Query(value = "SELECT s.password FROM Student s WHERE s.email = :email", nativeQuery = true)
     List<String> findPasswordByEmail(String email);
 
-
     List<Student> findByEmail(String email);
+
     List<Student> findByStudentSchoolDetailsClassId(String classId);
 
 

@@ -4,6 +4,7 @@ package com.Skoolio.TeacherService.TeacherService.controllers;
 
 import com.Skoolio.TeacherService.TeacherService.entities.Teacher;
 import com.Skoolio.TeacherService.TeacherService.model.RegisterResponse;
+import com.Skoolio.TeacherService.TeacherService.model.UpdateAddressDetails;
 import com.Skoolio.TeacherService.TeacherService.model.login.LoginRequest;
 import com.Skoolio.TeacherService.TeacherService.model.login.LoginResponse;
 import com.Skoolio.TeacherService.TeacherService.services.KafkaService;
@@ -15,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/teacher")
@@ -55,4 +59,17 @@ public class TeacherController {
         return teacherService.teacherLogin(loginRequest);
     }
 
+    @PatchMapping("/address/")
+    @Operation(summary = "This endpoint is used to update address details of teacher.")
+    public ResponseEntity<?> updateAddress(@RequestBody UpdateAddressDetails updateAddressDetails){
+        try {
+            teacherService.updateAddress(updateAddressDetails);
+            HashMap hashMap = new HashMap<>();
+            hashMap.put("status", "updated");
+            return ResponseEntity.status(HttpStatus.OK).body(hashMap);
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
 }

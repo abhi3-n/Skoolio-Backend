@@ -3,6 +3,7 @@ package com.Skoolio.StudentService.StudentSerivce.services;
 import com.Skoolio.StudentService.StudentSerivce.entities.Student;
 import com.Skoolio.StudentService.StudentSerivce.model.login.LoginRequest;
 import com.Skoolio.StudentService.StudentSerivce.model.login.LoginResponse;
+import com.Skoolio.StudentService.StudentSerivce.model.userDetails.UpdateAddressDetails;
 import com.Skoolio.StudentService.StudentSerivce.repositories.StudentRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,4 +28,6 @@ public interface StudentService {
     List<Student> getStudentsListByClassId(String classId);
 
     String getStudentNameById(String studentId);
+
+    void updateAddress(UpdateAddressDetails updatedAddress);
 }

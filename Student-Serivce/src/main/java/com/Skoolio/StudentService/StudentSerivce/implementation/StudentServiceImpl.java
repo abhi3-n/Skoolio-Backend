@@ -3,6 +3,8 @@ package com.Skoolio.StudentService.StudentSerivce.implementation;
 import com.Skoolio.StudentService.StudentSerivce.entities.Student;
 import com.Skoolio.StudentService.StudentSerivce.model.login.LoginRequest;
 import com.Skoolio.StudentService.StudentSerivce.model.login.LoginResponse;
+import com.Skoolio.StudentService.StudentSerivce.model.userDetails.AddressDetails;
+import com.Skoolio.StudentService.StudentSerivce.model.userDetails.UpdateAddressDetails;
 import com.Skoolio.StudentService.StudentSerivce.repositories.StudentRepository;
 import com.Skoolio.StudentService.StudentSerivce.services.StudentService;
 import org.apache.kafka.common.errors.ResourceNotFoundException;
@@ -39,6 +41,12 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public String getStudentNameById(String studentId) {
         return studentRepository.findNameByStudentId(studentId);
+    }
+
+    @Override
+    public void updateAddress(UpdateAddressDetails updateAddressDetails) {
+        studentRepository.updateAddressByStudentId(updateAddressDetails.getId(), updateAddressDetails.getAddressLine().toLowerCase(),
+                updateAddressDetails.getCity().toLowerCase(), updateAddressDetails.getState().toLowerCase());
     }
 
     @Override

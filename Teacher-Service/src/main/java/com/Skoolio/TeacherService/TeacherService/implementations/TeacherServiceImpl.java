@@ -1,6 +1,8 @@
 package com.Skoolio.TeacherService.TeacherService.implementations;
 
 import com.Skoolio.TeacherService.TeacherService.entities.Teacher;
+import com.Skoolio.TeacherService.TeacherService.model.AddressDetails;
+import com.Skoolio.TeacherService.TeacherService.model.UpdateAddressDetails;
 import com.Skoolio.TeacherService.TeacherService.model.login.LoginRequest;
 import com.Skoolio.TeacherService.TeacherService.model.login.LoginResponse;
 import com.Skoolio.TeacherService.TeacherService.repositories.TeacherRepository;
@@ -63,5 +65,11 @@ public class TeacherServiceImpl implements TeacherService {
         List<Teacher> teachers = teacherRepository.findByEmail(loginRequest.getEmail());
         teachers.get(0).setPassword(null);
         return ResponseEntity.status(HttpStatus.OK).body(new LoginResponse("Approved","Correct Password.", teachers.get(0)));
+    }
+
+    @Override
+    public void updateAddress(UpdateAddressDetails updateAddressDetails) {
+        teacherRepository.updateAddressByTeacherId(updateAddressDetails.getId(), updateAddressDetails.getAddressLine().toLowerCase(),
+                updateAddressDetails.getCity().toLowerCase(), updateAddressDetails.getState().toLowerCase());
     }
 }

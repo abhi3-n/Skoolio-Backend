@@ -23,4 +23,9 @@ public interface TeacherRepository extends JpaRepository<Teacher,String> {
     List<String> findPasswordByEmail(String email);
 
     List<Teacher> findByEmail(String email);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE Student SET address_line = :addressLine, city =:city, state = :state WHERE teacher_id = :teacherId", nativeQuery = true)
+    void updateAddressByTeacherId(String teacherId, String addressLine, String city, String state);
 }

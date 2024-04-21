@@ -2,6 +2,7 @@ package com.Skoolio.SchoolService.SchoolService.controllers;
 
 import com.Skoolio.SchoolService.SchoolService.entities.SchoolAdministrator;
 import com.Skoolio.SchoolService.SchoolService.model.RegisterResponse;
+import com.Skoolio.SchoolService.SchoolService.model.UpdateAddressDetails;
 import com.Skoolio.SchoolService.SchoolService.model.login.LoginRequest;
 import com.Skoolio.SchoolService.SchoolService.model.login.LoginResponse;
 import com.Skoolio.SchoolService.SchoolService.services.SchoolAdminService;
@@ -12,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/admin")
@@ -38,5 +41,19 @@ public class SchoolAdminController {
     @Operation(summary = "This endpoint is used to verify login for admin.")
     public ResponseEntity<LoginResponse> adminLogin(@RequestBody LoginRequest loginRequest){
         return schoolAdminService.adminLogin(loginRequest);
+    }
+
+    @PatchMapping("/address")
+    @Operation(summary = "This endpoint is used to update address details of admin.")
+    public ResponseEntity<?> updateAddress(@RequestBody UpdateAddressDetails updateAddressDetails){
+        try {
+            schoolAdminService.updateAddress(updateAddressDetails);
+            HashMap hashMap = new HashMap<>();
+            hashMap.put("status", "updated");
+            return ResponseEntity.status(HttpStatus.OK).body(hashMap);
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 }
