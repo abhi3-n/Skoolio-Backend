@@ -3,6 +3,7 @@ package com.Skoolio.TeacherService.TeacherService.implementations;
 import com.Skoolio.TeacherService.TeacherService.entities.Teacher;
 import com.Skoolio.TeacherService.TeacherService.model.AddressDetails;
 import com.Skoolio.TeacherService.TeacherService.model.UpdateAddressDetails;
+import com.Skoolio.TeacherService.TeacherService.model.UpdateContactDetails;
 import com.Skoolio.TeacherService.TeacherService.model.login.LoginRequest;
 import com.Skoolio.TeacherService.TeacherService.model.login.LoginResponse;
 import com.Skoolio.TeacherService.TeacherService.repositories.TeacherRepository;
@@ -71,5 +72,12 @@ public class TeacherServiceImpl implements TeacherService {
     public void updateAddress(UpdateAddressDetails updateAddressDetails) {
         teacherRepository.updateAddressByTeacherId(updateAddressDetails.getId(), updateAddressDetails.getAddressLine().toLowerCase(),
                 updateAddressDetails.getCity().toLowerCase(), updateAddressDetails.getState().toLowerCase());
+    }
+
+    @Override
+    public void updateContact(UpdateContactDetails updateContactDetails) {
+        teacherRepository.updateContactByTeacherId(updateContactDetails.getId(),
+                updateContactDetails.getPrimaryContact(), updateContactDetails.getPrimaryContactName().toLowerCase(),
+                updateContactDetails.getAlternativeContact(), updateContactDetails.getAlternativeContactName().toLowerCase());
     }
 }

@@ -20,4 +20,11 @@ public interface SchoolAdminRepo extends JpaRepository<SchoolAdministrator,Strin
     @Transactional
     @Query(value = "UPDATE admin SET address_line = :addressLine, city =:city, state = :state WHERE admin_id = :adminId", nativeQuery = true)
     void updateAddressByAdminId(String adminId, String addressLine, String city, String state);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE admin SET primary_contact = :primaryContact, primary_contact_name = :primaryContactName," +
+            " alternative_contact = :alternativeContact, alternative_contact_name = :alternativeContactName WHERE admin_id = :adminId", nativeQuery = true)
+    void updateContactByAdminId(String adminId, String primaryContact, String primaryContactName,
+                                String alternativeContact, String alternativeContactName);
 }

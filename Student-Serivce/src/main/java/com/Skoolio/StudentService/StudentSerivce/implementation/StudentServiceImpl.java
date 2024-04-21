@@ -5,6 +5,7 @@ import com.Skoolio.StudentService.StudentSerivce.model.login.LoginRequest;
 import com.Skoolio.StudentService.StudentSerivce.model.login.LoginResponse;
 import com.Skoolio.StudentService.StudentSerivce.model.userDetails.AddressDetails;
 import com.Skoolio.StudentService.StudentSerivce.model.userDetails.UpdateAddressDetails;
+import com.Skoolio.StudentService.StudentSerivce.model.userDetails.UpdateContactDetails;
 import com.Skoolio.StudentService.StudentSerivce.repositories.StudentRepository;
 import com.Skoolio.StudentService.StudentSerivce.services.StudentService;
 import org.apache.kafka.common.errors.ResourceNotFoundException;
@@ -47,6 +48,13 @@ public class StudentServiceImpl implements StudentService {
     public void updateAddress(UpdateAddressDetails updateAddressDetails) {
         studentRepository.updateAddressByStudentId(updateAddressDetails.getId(), updateAddressDetails.getAddressLine().toLowerCase(),
                 updateAddressDetails.getCity().toLowerCase(), updateAddressDetails.getState().toLowerCase());
+    }
+
+    @Override
+    public void updateContact(UpdateContactDetails updateContactDetails) {
+        studentRepository.updateContactByStudentId(updateContactDetails.getId(),
+                updateContactDetails.getPrimaryContact(), updateContactDetails.getPrimaryContactName().toLowerCase(), updateContactDetails.getPrimaryContactRelation().toLowerCase(),
+                updateContactDetails.getAlternativeContact(), updateContactDetails.getAlternativeContactName().toLowerCase(), updateContactDetails.getAlternativeContactRelation().toLowerCase());
     }
 
     @Override

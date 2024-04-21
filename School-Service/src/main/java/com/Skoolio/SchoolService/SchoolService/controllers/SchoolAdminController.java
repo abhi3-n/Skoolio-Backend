@@ -3,6 +3,7 @@ package com.Skoolio.SchoolService.SchoolService.controllers;
 import com.Skoolio.SchoolService.SchoolService.entities.SchoolAdministrator;
 import com.Skoolio.SchoolService.SchoolService.model.RegisterResponse;
 import com.Skoolio.SchoolService.SchoolService.model.UpdateAddressDetails;
+import com.Skoolio.SchoolService.SchoolService.model.UpdateContactDetails;
 import com.Skoolio.SchoolService.SchoolService.model.login.LoginRequest;
 import com.Skoolio.SchoolService.SchoolService.model.login.LoginResponse;
 import com.Skoolio.SchoolService.SchoolService.services.SchoolAdminService;
@@ -48,6 +49,20 @@ public class SchoolAdminController {
     public ResponseEntity<?> updateAddress(@RequestBody UpdateAddressDetails updateAddressDetails){
         try {
             schoolAdminService.updateAddress(updateAddressDetails);
+            HashMap hashMap = new HashMap<>();
+            hashMap.put("status", "updated");
+            return ResponseEntity.status(HttpStatus.OK).body(hashMap);
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @PatchMapping("/contact")
+    @Operation(summary = "This endpoint is used to update contact details of admin.")
+    public ResponseEntity<?> updateContact(@RequestBody UpdateContactDetails updateContactDetails){
+        try {
+            schoolAdminService.updateContact(updateContactDetails);
             HashMap hashMap = new HashMap<>();
             hashMap.put("status", "updated");
             return ResponseEntity.status(HttpStatus.OK).body(hashMap);

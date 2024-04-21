@@ -3,6 +3,7 @@ package com.Skoolio.SchoolService.SchoolService.implementation;
 import com.Skoolio.SchoolService.SchoolService.entities.SchoolAdministrator;
 import com.Skoolio.SchoolService.SchoolService.model.AddressDetails;
 import com.Skoolio.SchoolService.SchoolService.model.UpdateAddressDetails;
+import com.Skoolio.SchoolService.SchoolService.model.UpdateContactDetails;
 import com.Skoolio.SchoolService.SchoolService.model.login.LoginRequest;
 import com.Skoolio.SchoolService.SchoolService.model.login.LoginResponse;
 import com.Skoolio.SchoolService.SchoolService.repositories.SchoolAdminRepo;
@@ -63,5 +64,12 @@ public class SchoolAdminServiceImpl implements SchoolAdminService {
     public void updateAddress(UpdateAddressDetails updateAddressDetails) {
         schoolAdminRepo.updateAddressByAdminId(updateAddressDetails.getId(), updateAddressDetails.getAddressLine().toLowerCase(),
                 updateAddressDetails.getCity().toLowerCase(), updateAddressDetails.getState().toLowerCase());
+    }
+
+    @Override
+    public void updateContact(UpdateContactDetails updateContactDetails) {
+        schoolAdminRepo.updateContactByAdminId(updateContactDetails.getId(),
+                updateContactDetails.getPrimaryContact(), updateContactDetails.getPrimaryContactName().toLowerCase(),
+                updateContactDetails.getAlternativeContact(), updateContactDetails.getAlternativeContactName().toLowerCase());
     }
 }

@@ -26,6 +26,13 @@ public interface TeacherRepository extends JpaRepository<Teacher,String> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Student SET address_line = :addressLine, city =:city, state = :state WHERE teacher_id = :teacherId", nativeQuery = true)
+    @Query(value = "UPDATE teacher SET address_line = :addressLine, city =:city, state = :state WHERE teacher_id = :teacherId", nativeQuery = true)
     void updateAddressByTeacherId(String teacherId, String addressLine, String city, String state);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE teacher SET primary_contact = :primaryContact, primary_contact_name = :primaryContactName," +
+            " alternative_contact = :alternativeContact, alternative_contact_name = :alternativeContactName WHERE teacher_id = :teacherId", nativeQuery = true)
+    void updateContactByTeacherId(String teacherId, String primaryContact, String primaryContactName,
+                                  String alternativeContact, String alternativeContactName);
 }

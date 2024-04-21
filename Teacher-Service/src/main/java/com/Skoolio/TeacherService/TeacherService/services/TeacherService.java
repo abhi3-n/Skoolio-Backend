@@ -2,6 +2,7 @@ package com.Skoolio.TeacherService.TeacherService.services;
 
 import com.Skoolio.TeacherService.TeacherService.entities.Teacher;
 import com.Skoolio.TeacherService.TeacherService.model.UpdateAddressDetails;
+import com.Skoolio.TeacherService.TeacherService.model.UpdateContactDetails;
 import com.Skoolio.TeacherService.TeacherService.model.login.LoginRequest;
 import com.Skoolio.TeacherService.TeacherService.model.login.LoginResponse;
 import org.springframework.http.ResponseEntity;
@@ -22,4 +23,6 @@ public interface TeacherService {
     ResponseEntity<LoginResponse> teacherLogin(LoginRequest loginRequest);
 
     void updateAddress(UpdateAddressDetails updateAddressDetails);
+
+    void updateContact(UpdateContactDetails updateContactDetails);
 }

@@ -2,6 +2,7 @@ package com.Skoolio.SchoolService.SchoolService.services;
 
 import com.Skoolio.SchoolService.SchoolService.entities.SchoolAdministrator;
 import com.Skoolio.SchoolService.SchoolService.model.UpdateAddressDetails;
+import com.Skoolio.SchoolService.SchoolService.model.UpdateContactDetails;
 import com.Skoolio.SchoolService.SchoolService.model.login.LoginRequest;
 import com.Skoolio.SchoolService.SchoolService.model.login.LoginResponse;
 import org.springframework.http.ResponseEntity;
@@ -18,4 +19,6 @@ public interface SchoolAdminService {
     ResponseEntity<LoginResponse> adminLogin(LoginRequest loginRequest);
 
     void updateAddress(UpdateAddressDetails updateAddressDetails);
+
+    void updateContact(UpdateContactDetails updateContactDetails);
 }

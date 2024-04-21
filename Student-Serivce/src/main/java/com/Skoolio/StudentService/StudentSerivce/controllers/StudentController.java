@@ -6,6 +6,7 @@ import com.Skoolio.StudentService.StudentSerivce.model.login.LoginRequest;
 import com.Skoolio.StudentService.StudentSerivce.model.login.LoginResponse;
 import com.Skoolio.StudentService.StudentSerivce.model.responses.RegisterResponse;
 import com.Skoolio.StudentService.StudentSerivce.model.userDetails.UpdateAddressDetails;
+import com.Skoolio.StudentService.StudentSerivce.model.userDetails.UpdateContactDetails;
 import com.Skoolio.StudentService.StudentSerivce.services.KafkaService;
 import com.Skoolio.StudentService.StudentSerivce.services.MailService;
 import com.Skoolio.StudentService.StudentSerivce.services.StudentService;
@@ -71,7 +72,7 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.OK).body("");
     }
 
-    @PatchMapping("/address/")
+    @PatchMapping("/address")
     @Operation(summary = "This endpoint is used to update address details of student.")
     public ResponseEntity<?> updateAddress(@RequestBody UpdateAddressDetails updateAddressDetails){
         try {
@@ -85,6 +86,19 @@ public class StudentController {
         }
     }
 
+    @PatchMapping("/contact")
+    @Operation(summary = "This endpoint is used to update contact details of student.")
+    public ResponseEntity<?> updateContact(@RequestBody UpdateContactDetails updateContactDetails){
+        try {
+            studentService.updateContact(updateContactDetails);
+            HashMap hashMap = new HashMap<>();
+            hashMap.put("status", "updated");
+            return ResponseEntity.status(HttpStatus.OK).body(hashMap);
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
 
     @PostMapping("/image")
     public ResponseEntity<?> submitStudentImage(@RequestParam String id, @RequestParam MultipartFile image) throws IOException {

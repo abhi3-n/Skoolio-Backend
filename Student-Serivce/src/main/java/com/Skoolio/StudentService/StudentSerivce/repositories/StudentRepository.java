@@ -22,6 +22,13 @@ public interface StudentRepository extends JpaRepository<Student,String> {
     @Query(value = "UPDATE Student SET address_line = :addressLine, city =:city, state = :state WHERE student_id = :studentId", nativeQuery = true)
     void updateAddressByStudentId(String studentId, String addressLine, String city, String state);
 
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE Student SET primary_contact = :primaryContact, primary_contact_name = :primaryContactName, primary_contact_relation = :primaryContactRelation," +
+            " alternative_contact = :alternativeContact, alternative_contact_name = :alternativeContactName, alternative_contact_relation = :alternativeContactRelation WHERE student_id = :studentId", nativeQuery = true)
+    void updateContactByStudentId(String studentId, String primaryContact, String primaryContactName, String primaryContactRelation,
+                                  String alternativeContact, String alternativeContactName, String alternativeContactRelation);
+
     @Query(value = "SELECT s.password FROM Student s WHERE s.email = :email", nativeQuery = true)
     List<String> findPasswordByEmail(String email);
 
