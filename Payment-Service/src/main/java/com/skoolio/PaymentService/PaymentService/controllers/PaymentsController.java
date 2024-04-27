@@ -4,6 +4,7 @@ package com.skoolio.PaymentService.PaymentService.controllers;
 import com.skoolio.PaymentService.PaymentService.entities.Payment;
 import com.skoolio.PaymentService.PaymentService.model.CreatePaymentsObj;
 import com.skoolio.PaymentService.PaymentService.services.PaymentService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.ws.rs.POST;
 import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ public class PaymentsController {
     private PaymentService paymentService;
 
     @GetMapping("/{studentId}/{status}")
+    @Operation(summary = "This endpoint is used by student to fetch his/her fee according to status of fee payments.")
     public ResponseEntity<?> getFeesListForStudent(@PathVariable String studentId, @PathVariable String status){
         try {
             List<Payment> paymentsList = paymentService.getFeesListForStudent(studentId, status);
@@ -32,8 +34,9 @@ public class PaymentsController {
     }
 
     @GetMapping("/{schoolId}/{studentId}/{status}")
+    @Operation(summary = "This endpoint is used by admin to fetch fee according to status of fee payments of a student of the school.")
     public ResponseEntity<?> getFeeListForStudent(@PathVariable String schoolId,@PathVariable String studentId, @PathVariable String status){
-        //TODO: First we need to verify if the student velongs to this school or not. If not, we won't send details to requestor
+        //TODO: First we need to verify if the student belongs to this school or not. If not, we won't send details to requestor
         System.out.println(schoolId);
         try {
             List<Payment> paymentsList = paymentService.getFeesListForStudent(studentId, status);
@@ -45,6 +48,7 @@ public class PaymentsController {
     }
 
     @GetMapping("/monthlyData/{monthEpoch}/{classId}")
+    @Operation(summary = "This endpoint is used by admin to fetch fee payment details of a particular month for a class.")
     public ResponseEntity<?> getFeePaymentsForMonthAndClassId(@PathVariable String monthEpoch,@PathVariable String classId){
         try {
             List<Payment> paymentsList = paymentService.getFeePaymentsForMonthAndClassId(Long.parseLong(monthEpoch), classId);
@@ -56,6 +60,7 @@ public class PaymentsController {
     }
 
     @PostMapping("month")
+    @Operation(summary = "This endpoint is used by admin to create fee payment entries for a month for a particular class.")
     public ResponseEntity<?> createFeePaymentsForMonth(@RequestBody CreatePaymentsObj createPaymentsObj){
         try {
             paymentService.createFeePaymentsForMonth(createPaymentsObj);

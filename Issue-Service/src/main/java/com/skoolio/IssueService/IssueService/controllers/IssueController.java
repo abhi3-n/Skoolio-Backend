@@ -6,6 +6,7 @@ import com.skoolio.IssueService.IssueService.entities.IssueMessage;
 import com.skoolio.IssueService.IssueService.services.IssueService;
 import com.skoolio.IssueService.IssueService.model.IssueCloseRequest;
 import com.skoolio.IssueService.IssueService.model.IssueMessageRequest;
+import io.swagger.v3.oas.annotations.Operation;
 import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ public class IssueController {
     private IssueService issueService;
 
     @PostMapping
+    @Operation(summary = "This endpoint is used to register a new issue.")
     public ResponseEntity<?> registerAnIssue(@RequestBody Issue issue){
         System.out.println(issue.toString());
         String issueId = issueService.saveIssue(issue);
@@ -34,6 +36,7 @@ public class IssueController {
     }
 
     @PatchMapping("/addMessage")
+    @Operation(summary = "This endpoint is used to add a new message to an existing issue.")
     public ResponseEntity<?> addIssueMessageToList(@RequestBody IssueMessageRequest issueMessageRequest){
         try {
             issueService.addIssueMessageToList(new IssueMessage(issueMessageRequest.getMessageCreatorId(), issueMessageRequest.getMessageCreatorType(), issueMessageRequest.getMessageText(), issueMessageRequest.getMessageTime()), issueMessageRequest.getIssueId());
@@ -50,6 +53,7 @@ public class IssueController {
     }
 
     @PatchMapping("/closeIssue")
+    @Operation(summary = "This endpoint is used to mark an issue as closed.")
     public ResponseEntity<?> closeIssue(@RequestBody IssueCloseRequest issueCloseRequest){
         try {
             issueService.closeIssue(issueCloseRequest.getIssueId());

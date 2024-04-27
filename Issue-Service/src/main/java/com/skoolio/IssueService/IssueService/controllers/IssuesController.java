@@ -3,6 +3,7 @@ package com.skoolio.IssueService.IssueService.controllers;
 
 import com.skoolio.IssueService.IssueService.entities.Issue;
 import com.skoolio.IssueService.IssueService.services.IssueService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ public class IssuesController {
     private IssueService issueService;
 
     @GetMapping("/student/{studentId}/{status}")
+    @Operation(summary = "This endpoint is used to fetch all issues with a particular status message for a student.")
     public ResponseEntity<?> getIssuesForStudent(@PathVariable String studentId, @PathVariable String status){
         try {
             List<Issue> issueList = issueService.getIssuesForStudent(studentId, status.charAt(0));
@@ -28,6 +30,7 @@ public class IssuesController {
     }
 
     @GetMapping("/admin/{schoolId}/{status}")
+    @Operation(summary = "This endpoint is used to fetch all issues with a particular status message and belonging to a school for an admin.")
     public ResponseEntity<?> getIssuesForAdmin(@PathVariable String schoolId, @PathVariable String status){
         try {
             List<Issue> issueList = issueService.getIssuesForAdmin(Integer.parseInt(schoolId), status.charAt(0));
@@ -39,6 +42,7 @@ public class IssuesController {
     }
 
     @GetMapping("/teacher/{classId}/{status}")
+    @Operation(summary = "This endpoint is used to fetch all issues with a particular status message and belonging to a classId for an teacher.")
     public ResponseEntity<?> getIssuesForTeacher(@PathVariable String classId, @PathVariable String status){
         try {
             List<Issue> issueList = issueService.getIssuesForTeacher(classId, status.charAt(0));
